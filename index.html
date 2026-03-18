@@ -2,3244 +2,632 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  <!-- Open Graph / WhatsApp / LinkedIn / Twitter -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://leticiacqueiroz-biomas.github.io/biomas-landingpage/">
-  <meta property="og:title"       content="BIOMAS · Natural Intelligence">
-  <meta property="og:description" content="The operating system that enables bioregions to think, plan, and evolve like living systems.">
-  <meta property="og:image"       content="https://leticiacqueiroz-biomas.github.io/biomas-landingpage/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="BIOMAS · Natural Intelligence">
-  <meta name="twitter:description" content="The operating system that enables bioregions to think, plan, and evolve like living systems.">
-  <meta name="twitter:image"      content="https://leticiacqueiroz-biomas.github.io/biomas-landingpage/og-image.jpg">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIOMAS · Natural Intelligence</title>
+<title>BIOMAS · Natural Intelligence — Operating Layers</title>
 <link href="https://fonts.googleapis.com/css2?family=Clear+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-
-/* ─────────────────────────────────────────
-   TOKENS — BIOMAS brand book
-───────────────────────────────────────── */
-:root {
-  --green:    #05ab85;
-  --teal:     #01253a;
-  --gold:     #bf9138;
-  --burgundy: #89172b;
-  --orange:   #ce6a28;
-  --lime:     #d3e390;
-  --sky:      #bbd7f1;
-  --cream:    #fffdf9;
-  --white:    #ffffff;
-
-  --font: 'Clear Sans', Verdana, sans-serif;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ─────────────────────────────────────────
-   RESET & BASE
-───────────────────────────────────────── */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font);
-  background: var(--teal);
-  color: var(--white);
-  overflow-x: hidden;
-}
-
-/* ─────────────────────────────────────────
-   NAV
-───────────────────────────────────────── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px;
-  height: 64px;
-  background: rgba(6,62,81,0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-/* SVG logo mark — leaf in circle */
-.logo-mark {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-}
-
-.nav-logo-img {
-  height: 30px;
-  width: auto;
-  display: block;
-}
-
-.nav-wordmark {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--white);
-  text-transform: uppercase;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  transition: color .2s;
-}
-.nav-links a:hover { color: var(--green); }
-
-.nav-cta {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--teal) !important;
-  background: var(--green);
-  padding: 8px 20px;
-  border-radius: 3px;
-  transition: background .2s !important;
-}
-.nav-cta:hover { background: #04c49a !important; color: var(--teal) !important; }
-
-/* ─────────────────────────────────────────
-   HERO
-───────────────────────────────────────── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 72px 48px 56px;
-  position: relative;
-  overflow: hidden;
-  background: var(--teal);
-}
-
-/* Animated grid background */
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(5,171,133,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(5,171,133,0.07) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
-  animation: gridDrift 20s linear infinite;
-}
-@keyframes gridDrift {
-  0%   { background-position: 0 0; }
-  100% { background-position: 60px 60px; }
-}
-
-/* Radial glow */
-.hero-glow {
-  position: absolute;
-  width: 800px;
-  height: 800px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(5,171,133,0.18) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.hero-content { position: relative; z-index: 2; max-width: 1000px; }
-
-
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--green);
-  background: rgba(5,171,133,0.1);
-  border: 1px solid rgba(5,171,133,0.25);
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: fadeUp .8s var(--ease) .1s both;
-}
-.eyebrow-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s ease infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
-
-.hero h1 {
-  font-size: clamp(38px, 6vw, 70px);
-  font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -1.5px;
-  color: var(--white);
-  margin-bottom: 18px;
-  opacity: 0;
-  animation: fadeUp .9s var(--ease) .25s both;
-}
-.hero h1 .accent { color: var(--green); }
-
-.hero-sub {
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 400;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.6);
-  max-width: 580px;
-  margin: 0 auto 32px;
-  opacity: 0;
-  animation: fadeUp .9s var(--ease) .4s both;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  opacity: 0;
-  animation: fadeUp .9s var(--ease) .55s both;
-}
-
-.btn-primary {
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--teal);
-  background: var(--green);
-  border: none;
-  padding: 14px 32px;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s, transform .15s;
-}
-.btn-primary:hover { background: #04c49a; transform: translateY(-1px); }
-
-.btn-ghost {
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 14px 32px;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
-.btn-ghost:hover { border-color: var(--green); color: var(--green); }
-
-/* scroll hint */
-.scroll-hint {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  animation: fadeUp .8s var(--ease) 1.1s both;
-}
-.scroll-hint span {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-}
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, rgba(5,171,133,0.6), transparent);
-  animation: scrollLine 2s ease infinite;
-}
-@keyframes scrollLine {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: top; }
-  51%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* ─────────────────────────────────────────
-   SECTION COMMONS
-───────────────────────────────────────── */
-section { position: relative; }
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-
-.section-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 16px;
-}
-
-/* Reveal animation — triggered by JS */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
-.reveal-delay-4 { transition-delay: .4s; }
-
-/* ─────────────────────────────────────────
-   SECTION 1 — THE PROBLEM
-───────────────────────────────────────── */
-.section-problem {
-  background: var(--cream);
-  color: var(--teal);
-  padding: 72px 0;
-}
-
-.problem-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.problem-left h2 {
-  font-size: clamp(32px, 4vw, 46px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.8px;
-  color: var(--teal);
-  margin-bottom: 24px;
-}
-.problem-left h2 em {
-  font-style: italic;
-  color: var(--green);
-  font-weight: 400;
-}
-
-.problem-left p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: rgba(6,62,81,0.65);
-  margin-bottom: 16px;
-}
-
-/* Three actors showing the coordination failure */
-.problem-actors {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.actor-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--white);
-  border: 1px solid rgba(6,62,81,0.1);
-  border-radius: 8px;
-  padding: 14px 18px;
-  position: relative;
-  overflow: hidden;
-}
-.actor-row::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-}
-.actor-row.a1::before { background: var(--green); }
-.actor-row.a2::before { background: var(--gold); }
-.actor-row.a3::before { background: var(--sky); }
-
-.actor-icon {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-.a1 .actor-icon { background: rgba(5,171,133,0.1); }
-.a2 .actor-icon { background: rgba(191,145,56,0.1); }
-.a3 .actor-icon { background: rgba(187,215,241,0.4); }
-
-.actor-text strong {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--teal);
-  margin-bottom: 2px;
-}
-.actor-text span {
-  font-size: 11px;
-  color: rgba(6,62,81,0.5);
-  line-height: 1.4;
-}
-
-.no-connection {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 8px 0;
-  color: rgba(6,62,81,0.35);
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.no-conn-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(6,62,81,0.12);
-  border-top: 1px dashed rgba(6,62,81,0.2);
-}
-
-/* ─────────────────────────────────────────
-   SECTION 2 — THE SOLUTION (dark)
-───────────────────────────────────────── */
-.section-solution {
-  background: var(--teal);
-  padding: 72px 0;
-}
-
-.solution-header {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 48px;
-}
-.solution-header h2 {
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 700;
-  letter-spacing: -0.8px;
-  line-height: 1.1;
-  color: var(--white);
-  margin-bottom: 20px;
-}
-.solution-header h2 .accent { color: var(--green); }
-.solution-header p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.55);
-}
-
-/* OS metaphor card */
-.os-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 40px 48px;
-  max-width: 800px;
-  margin: 0 auto 48px;
-  text-align: center;
-}
-.os-card .os-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 16px;
-}
-.os-card blockquote {
-  font-size: clamp(18px, 2.5vw, 24px);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.8);
-}
-.os-card blockquote strong {
-  font-style: normal;
-  font-weight: 700;
-  color: var(--white);
-}
-
-/* ─────────────────────────────────────────
-   SECTION 3 — THE FOUR LAYERS
-───────────────────────────────────────── */
-/* ── DIAGRAM WRAPPER ── */
-.diagram-wrapper {
-  background: var(--cream);
-  border-radius: 16px;
-  padding: 20px 32px 16px;
-  margin-top: 4px;
-}
-
-/* ══ DIAGRAM LAYOUT ══ */
-.diagram {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 0;
-  align-items: stretch;
-}
-
-/* ── LEFT: LIVING LAB ── */
-.ll-outer {
-  padding-right: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.ll-card {
-  background: var(--teal);
-  border-radius: 12px;
-  padding: 26px 20px 24px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-.ll-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px,
-    transparent 1px, transparent 22px
-  );
-  pointer-events: none;
-}
-.ll-badge {
-  display: inline-block;
-  background: var(--green);
-  color: var(--white);
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 2px;
-  margin-bottom: 18px;
-  align-self: flex-start;
-}
-.ll-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-.ll-desc {
-  font-size: 11.5px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.6;
-  margin-bottom: 22px;
-}
-.ll-rule {
-  width: 28px;
-  height: 2px;
-  background: var(--green);
-  margin-bottom: 20px;
-  flex-shrink: 0;
-}
-.ll-fns {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-}
-.ll-fn {
-  display: flex;
-  gap: 9px;
-  align-items: flex-start;
-}
-.fn-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--green);
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-.fn-body strong {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 1px;
-}
-.fn-body span {
-  font-size: 10.5px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.5;
-}
-.ll-flow {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.ll-flow-row {
-  font-size: 10px;
-  color: rgba(255,255,255,0.45);
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.ll-flow-row span:first-child {
-  color: var(--green);
-  font-size: 12px;
-  line-height: 1;
-}
-
-/* ── RIGHT: LAYERS STACK ── */
-.layers-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.layer-block {
-  border-radius: 0;
-  padding: 18px 22px 16px;
-  position: relative;
-  border: 1.5px solid transparent;
-  border-left: none;
-  border-right: none;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-.layers-col .layer-block:first-child { border-radius: 10px 10px 0 0; border-top: 1.5px solid transparent; }
-.layers-col .layer-block:last-child  { border-radius: 0 0 10px 10px; border-bottom: 1.5px solid transparent; }
-.l4-b { border-top-color: rgba(191,145,56,0.2) !important; }
-.l1-b { border-bottom-color: rgba(5,171,133,0.25) !important; }
-.layer-block:hover {
-  transform: translateX(4px);
-  box-shadow: -4px 0 0 0 rgba(5,171,133,0.18);
-}
-.layer-block::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 18px;
-  bottom: 18px;
-  width: 3px;
-  border-radius: 0 2px 2px 0;
-}
-.layer-num {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.layer-title {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--teal);
-  margin-bottom: 2px;
-}
-.layer-tagline {
-  font-size: 11px;
-  color: var(--teal);
-  opacity: 0.5;
-  margin-bottom: 8px;
-  font-style: italic;
-}
-.layer-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.layer-tag {
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 2px;
-}
-
-/* flow connectors between layers */
-.flow-arrow {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 0 0 0;
-  background: var(--cream);
-  border-left: 3px solid rgba(5,171,133,0.18);
-}
-.flow-line { display: none; }
-.flow-pill {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 4px 12px 4px 12px;
-}
-.flow-arrow-icon {
-  width: 16px;
-  height: 16px;
-  background: rgba(5,171,133,0.15);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.flow-arrow-icon svg {
-  width: 8px; height: 8px;
-  fill: none; stroke: var(--green);
-  stroke-width: 2.2;
-  stroke-linecap: round; stroke-linejoin: round;
-}
-.flow-label {
-  font-size: 9.5px;
-  font-weight: 600;
-  color: var(--teal);
-  opacity: 0.55;
-  letter-spacing: 0.2px;
-  font-style: italic;
-}
-
-/* layer colour themes */
-.l4-b { background: rgba(191,145,56,0.06); border-color: rgba(191,145,56,0.2); }
-.l4-b::before { background: var(--gold); }
-.l4-b .layer-num { color: var(--gold); }
-.l4-b .layer-tag { background: rgba(191,145,56,0.13); color: #6b4210; }
-
-.l3-b { background: rgba(187,215,241,0.25); border-color: rgba(187,215,241,0.6); }
-.l3-b::before { background: #5592c4; }
-.l3-b .layer-num { color: #1a5a8a; }
-.l3-b .layer-tag { background: rgba(187,215,241,0.5); color: #0f3a60; }
-
-.l2-b { background: rgba(211,227,144,0.28); border-color: rgba(180,200,80,0.35); }
-.l2-b::before { background: #8aaa30; }
-.l2-b .layer-num { color: #4a6b10; }
-.l2-b .layer-tag { background: rgba(211,227,144,0.6); color: #3a5510; }
-
-.l1-b { background: rgba(5,171,133,0.08); border-color: rgba(5,171,133,0.25); }
-.l1-b::before { background: var(--green); }
-.l1-b .layer-num { color: var(--green); }
-.l1-b .layer-tag { background: rgba(5,171,133,0.14); color: #025c47; }
-
-/* territory bar */
-.territory-bar {
-  margin-top: 4px;
-  border: 1.5px dashed rgba(5,171,133,0.28);
-  border-radius: 10px;
-  padding: 7px 16px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-left: 280px;
-  background: rgba(5,171,133,0.02);
-}
-.terr-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--green);
-  flex-shrink: 0;
-}
-.terr-div {
-  width: 1px; height: 18px;
-  background: rgba(5,171,133,0.2);
-  flex-shrink: 0;
-}
-.terr-places { display: flex; gap: 7px; flex-wrap: wrap; }
-.terr-place {
-  font-size: 9.5px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--teal);
-  background: rgba(6,62,81,0.07);
-  border: 1px solid rgba(6,62,81,0.12);
-  padding: 3px 9px;
-  border-radius: 2px;
-}
-.terr-sub {
-  margin-left: auto;
-  font-size: 9.5px;
-  color: rgba(6,62,81,0.3);
-  letter-spacing: 0.3px;
-}
-
-/* layers legend */
-.diagram-legend {
-  margin-top: 6px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(6,62,81,0.1);
-}
-.leg-item { display: flex; gap: 10px; }
-.leg-bar {
-  width: 3px; height: 36px;
-  border-radius: 2px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.leg-strong {
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--teal);
-  margin-bottom: 3px;
-}
-.leg-text {
-  font-size: 10.5px;
-  color: var(--teal);
-  opacity: 0.55;
-  line-height: 1.55;
-}
-
-/* responsive */
-@media (max-width: 700px) {
-  .diagram { grid-template-columns: 1fr; }
-  .ll-outer { padding-right: 0; padding-bottom: 16px; }
-  .ll-card { min-height: auto; }
-  .territory-bar { margin-left: 0; flex-wrap: wrap; }
-  .terr-sub { margin-left: 0; }
-  .diagram-legend { grid-template-columns: 1fr; }
-  .diagram-wrapper { padding: 24px 20px; }
-}
-
-/* ─────────────────────────────────────────
-   SECTION 4 — WHY DIFFERENT (cream)
-───────────────────────────────────────── */
-.section-why {
-  background: var(--cream);
-  color: var(--teal);
-  padding: 72px 0;
-}
-
-.why-header {
-  margin-bottom: 40px;
-}
-.why-header h2 {
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 700;
-  letter-spacing: -0.6px;
-  line-height: 1.1;
-  color: var(--teal);
-  margin-bottom: 16px;
-}
-.why-header p {
-  font-size: 16px;
-  color: rgba(6,62,81,0.6);
-  max-width: 540px;
-  line-height: 1.7;
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-}
-
-.why-card {
-  background: var(--white);
-  border: 1px solid rgba(6,62,81,0.08);
-  border-radius: 12px;
-  padding: 32px 28px;
-  position: relative;
-  overflow: hidden;
-}
-.why-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--green);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s var(--ease);
-}
-.why-card:hover::after { transform: scaleX(1); }
-
-.why-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(6,62,81,0.3);
-  margin-bottom: 10px;
-}
-.why-contrast {
-  font-size: 12px;
-  color: rgba(6,62,81,0.4);
-  line-height: 1.5;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(6,62,81,0.08);
-}
-.why-contrast s { opacity: 0.6; }
-
-.why-point {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--teal);
-  line-height: 1.45;
-  margin-bottom: 8px;
-}
-.why-body {
-  font-size: 12.5px;
-  color: rgba(6,62,81,0.6);
-  line-height: 1.65;
-}
-
-/* ─────────────────────────────────────────
-   SECTION 5 — RESULT / VISION
-───────────────────────────────────────── */
-.section-result {
-  background: var(--teal);
-  padding: 72px 0;
-  text-align: center;
-}
-
-.result-inner {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.result-inner .section-label { justify-content: center; display: flex; }
-
-.result-inner h2 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.6px;
-  line-height: 1.15;
-  color: var(--white);
-  margin-bottom: 28px;
-}
-.result-inner h2 .accent { color: var(--green); }
-
-.result-inner p {
-  font-size: 17px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 16px;
-}
-
-/* Outcomes strip */
-.outcomes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin: 32px 0;
-}
-.outcome-pill {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--teal);
-  background: var(--green);
-  padding: 7px 18px;
-  border-radius: 20px;
-}
-.outcome-pill.dim {
-  background: rgba(5,171,133,0.15);
-  color: rgba(255,255,255,0.6);
-}
-
-/* ─────────────────────────────────────────
-   SECTION 6 — PILOT
-───────────────────────────────────────── */
-.section-pilot {
-  background: rgba(5,171,133,0.08);
-  border-top: 1px solid rgba(5,171,133,0.15);
-  border-bottom: 1px solid rgba(5,171,133,0.15);
-  padding: 56px 0;
-}
-
-.pilot-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.pilot-left h3 {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 14px;
-  letter-spacing: -0.3px;
-}
-.pilot-left p {
-  font-size: 14px;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 20px;
-}
-
-.btn-pilot {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 13px 30px;
-  background: var(--green);
-  color: #fff;
-  font-family: var(--font);
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
-}
-.btn-pilot:hover { background: #04c89d; transform: translateY(-2px); }
-
-.pilot-facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.pilot-fact {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 14px 16px;
-}
-.pilot-fact-val {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--green);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.pilot-fact-label {
-  font-size: 10px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.3px;
-}
-
-/* ─────────────────────────────────────────
-   CTA
-───────────────────────────────────────── */
-.section-cta {
-  background: var(--green);
-  padding: 64px 0;
-  text-align: center;
-}
-
-.section-cta h2 {
-  font-size: clamp(28px, 4vw, 46px);
-  font-weight: 700;
-  letter-spacing: -0.6px;
-  color: var(--teal);
-  margin-bottom: 16px;
-  line-height: 1.1;
-}
-.section-cta p {
-  font-size: 16px;
-  color: rgba(6,62,81,0.65);
-  max-width: 480px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-}
-
-.btn-dark {
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--teal);
-  border: none;
-  padding: 16px 40px;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s;
-  display: inline-block;
-}
-.btn-dark:hover { background: #0a5a75; }
-
-/* ─────────────────────────────────────────
-   FOOTER
-───────────────────────────────────────── */
-footer {
-  background: #031e28;
-  padding: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-}
-.footer-logo-img {
-  height: 36px;
-  width: auto;
-}
-.footer-wordmark {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--white);
-  text-transform: uppercase;
-}
-.footer-tagline {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-top: 2px;
-}
-
-.footer-right {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
-  text-align: right;
-  line-height: 1.8;
-}
-.footer-right a { color: rgba(5,171,133,0.6); text-decoration: none; }
-.footer-right a:hover { color: var(--green); }
-
-/* ─────────────────────────────────────────
-   ANIMATION UTILITIES
-───────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* ─────────────────────────────────────────
-   RESPONSIVE
-───────────────────────────────────────── */
-@media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  .nav-links { display: none; }
-  .container { padding: 0 24px; }
-  .hero { padding: 100px 24px 72px; }
-  .problem-layout,
-  .pilot-layout { grid-template-columns: 1fr; gap: 40px; }
-  .layers-grid { grid-template-columns: 1fr; }
-  .why-grid { grid-template-columns: 1fr; }
-  .pilot-facts { grid-template-columns: 1fr 1fr; }
-  footer { padding: 32px 24px; flex-direction: column; text-align: center; }
-  .footer-right { text-align: center; }
-}
-
-/* ─────────────────────────────────────────
-   TEAM AREA
-───────────────────────────────────────── */
-.team-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(3,30,40,0.92);
-  backdrop-filter: blur(16px);
-  align-items: center;
-  justify-content: center;
-}
-.team-overlay.active { display: flex; }
-
-.team-login-card {
-  background: #0a2e3d;
-  border: 1px solid rgba(5,171,133,0.15);
-  border-radius: 12px;
-  padding: 48px 40px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  position: relative;
-}
-.team-login-card h3 {
-  font-size: 18px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: 8px;
-}
-.team-login-card p {
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 28px;
-}
-.team-login-card input[type="password"] {
-  width: 100%;
-  padding: 12px 16px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 6px;
-  color: var(--white);
-  font-family: var(--font);
-  font-size: 14px;
-  outline: none;
-  transition: border-color .2s;
-}
-.team-login-card input[type="password"]:focus {
-  border-color: var(--green);
-}
-.team-login-card .team-login-btn {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 10px 32px;
-  background: var(--green);
-  color: var(--teal);
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: opacity .2s;
-}
-.team-login-card .team-login-btn:hover { opacity: 0.85; }
-.team-login-error {
-  color: var(--burgundy);
-  font-size: 12px;
-  margin-top: 12px;
-  display: none;
-}
-.team-close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.3);
-  font-size: 20px;
-  cursor: pointer;
-  transition: color .2s;
-}
-.team-close-btn:hover { color: var(--white); }
-
-.team-dashboard {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  background: var(--teal);
-  overflow-y: auto;
-}
-.team-dashboard.active { display: block; }
-
-.team-dash-header {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  padding: 0 48px 0 32px;
-  background: #031e28;
-  border-bottom: 1px solid rgba(5,171,133,0.1);
-  height: 52px;
-  flex-shrink: 0;
-}
-.team-dash-header h2 {
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  padding-right: 32px;
-  border-right: 1px solid rgba(255,255,255,0.07);
-}
-.team-dash-exit {
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  background: none;
-  border: none;
-  border-left: 1px solid rgba(255,255,255,0.07);
-  padding: 0 0 0 28px;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: all .2s;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-}
-.team-dash-exit:hover {
-  color: var(--white);
-}
-
-.team-dash-content {
-  width: 100%;
-  padding: 32px 48px;
-}
-.team-dash-content h3 {
-  font-size: 16px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: 24px;
-}
-.team-links-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  margin-bottom: 48px;
-}
-.team-link-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 24px;
-  transition: all .25s var(--ease);
-}
-.team-link-card:hover {
-  background: rgba(5,171,133,0.06);
-  border-color: rgba(5,171,133,0.2);
-}
-.team-link-card h4 {
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 8px;
-}
-.team-link-card p {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-.team-link-card a {
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--green);
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity .2s;
-}
-.team-link-card a:hover { opacity: 1; }
-
-/* ── TEAM NAV TABS ── */
-.team-nav-tabs {
-  display: flex;
-  gap: 0;
-  align-self: stretch;
-  flex: 1;
-  padding: 0 16px;
-}
-.team-nav-tab {
-  padding: 0 20px;
-  font-family: var(--font);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: all .2s;
-  white-space: nowrap;
-}
-.team-nav-tab:hover { color: rgba(255,255,255,0.6); }
-.team-nav-tab.active {
-  color: var(--green);
-  border-bottom-color: var(--green);
-}
-.team-tab-panel { display: none; }
-.team-tab-panel.active { display: block; }
-#tab-deliverables {
-  margin: -32px -48px 0;
-}
-#tab-deliverables iframe {
-  display: block;
-  width: 100%;
-  height: calc(100vh - 52px);
-  border: none;
-}
-
-/* ── SPRINT MANAGEMENT ── */
-.sprint-view-controls {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-.sprint-filter-btn {
-  padding: 6px 16px;
-  font-family: var(--font);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all .2s;
-}
-.sprint-filter-btn:hover {
-  color: rgba(255,255,255,0.7);
-  border-color: rgba(255,255,255,0.15);
-}
-.sprint-filter-btn.active {
-  color: var(--teal);
-  background: var(--green);
-  border-color: var(--green);
-}
-
-.sprint-section {
-  margin-bottom: 32px;
-}
-.sprint-section-title {
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(5,171,133,0.15);
-}
-
-/* ── TASK CARDS ── */
-.task-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.task-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 16px 20px;
-  transition: all .2s var(--ease);
-  cursor: pointer;
-}
-.task-card:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.1);
-}
-.task-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.task-card-title {
-  font-size: 13px;
-  color: var(--white);
-  flex: 1;
-  min-width: 200px;
-}
-.task-card-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.task-tag {
-  padding: 3px 10px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-.tag-project {
-  background: rgba(191,145,56,0.15);
-  color: var(--gold);
-}
-.tag-person {
-  background: rgba(187,215,241,0.1);
-  color: var(--sky);
-}
-.tag-sprint {
-  background: rgba(5,171,133,0.12);
-  color: var(--green);
-}
-.tag-lab {
-  background: rgba(206,106,40,0.15);
-  color: var(--orange);
-}
-
-/* Status badges */
-.status-badge {
-  padding: 3px 10px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-.status-completed { background: rgba(5,171,133,0.2); color: #05ab85; }
-.status-in-progress { background: rgba(191,145,56,0.2); color: #bf9138; }
-.status-scheduled { background: rgba(187,215,241,0.15); color: #bbd7f1; }
-.status-on-hold { background: rgba(137,23,43,0.2); color: #d4546a; }
-
-select.status-badge {
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  border: 1px solid transparent;
-  outline: none;
-  font-family: var(--font);
-  transition: border-color .2s;
-}
-select.status-badge:hover { border-color: rgba(255,255,255,0.2); }
-select.status-badge option {
-  background: #0a2e3d;
-  color: var(--white);
-  font-size: 11px;
-}
-
-/* Task detail expansion */
-.task-card-detail {
-  display: none;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.task-card.expanded .task-card-detail { display: block; }
-.task-detail-row {
-  margin-bottom: 10px;
-}
-.task-detail-label {
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 3px;
-}
-.task-detail-value {
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.6;
-}
-
-/* ── STATS BAR ── */
-.stats-bar {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-  padding: 20px 24px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px;
-}
-.stat-item {
-  text-align: center;
-}
-.stat-number {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--green);
-}
-.stat-label {
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-top: 2px;
-}
-
-/* ── PROGRESS BAR ── */
-.progress-bar-container {
-  height: 6px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 32px;
-}
-.progress-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width .5s var(--ease);
-}
-
-/* Loading state */
-.team-loading {
-  text-align: center;
-  padding: 60px 20px;
-  color: rgba(255,255,255,0.3);
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-.team-loading::after {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 24px;
-  margin: 16px auto 0;
-  border: 2px solid rgba(5,171,133,0.2);
-  border-top-color: var(--green);
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── REFRESH BTN ── */
-.team-refresh-btn {
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  background: none;
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 6px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: var(--font);
-  transition: all .2s;
-  margin-left: 12px;
-}
-.team-refresh-btn:hover {
-  color: var(--green);
-  border-color: rgba(5,171,133,0.3);
-}
-
-/* ── KANBAN ── */
-.kanban-board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 32px;
-}
-.kanban-column {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px;
-  padding: 12px;
-  min-height: 200px;
-}
-.kanban-col-header {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.kanban-col-header.kh-progress { background: rgba(191,145,56,0.15); color: var(--gold); }
-.kanban-col-header.kh-scheduled { background: rgba(187,215,241,0.1); color: var(--sky); }
-.kanban-col-header.kh-hold { background: rgba(137,23,43,0.15); color: #d4546a; }
-.kanban-col-header.kh-done { background: rgba(5,171,133,0.12); color: var(--green); }
-
-.kanban-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 6px;
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: all .2s;
-}
-.kanban-card:hover {
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.12);
-}
-.kanban-card .task-card-detail {
-  display: none;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.kanban-card.expanded .task-card-detail {
-  display: block;
-}
-.kanban-card-title {
-  font-size: 12px;
-  color: var(--white);
-  margin-bottom: 6px;
-  line-height: 1.4;
-}
-.kanban-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-.kanban-card-tags .task-tag {
-  font-size: 8px;
-  padding: 2px 6px;
-}
-
-/* Sprint indicator tabs */
-.sprint-tabs {
-  display: flex;
-  gap: 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  overflow-x: auto;
-}
-.sprint-tab {
-  padding: 10px 20px;
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: all .2s;
-  white-space: nowrap;
-  position: relative;
-}
-.sprint-tab:hover { color: rgba(255,255,255,0.6); }
-.sprint-tab.active {
-  color: var(--green);
-  border-bottom-color: var(--green);
-}
-.sprint-tab-count {
-  font-size: 9px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.2);
-  margin-left: 4px;
-}
-.sprint-tab.active .sprint-tab-count { color: rgba(5,171,133,0.5); }
-
-/* Sprint stats row */
-.sprint-stats-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.sprint-stat-chip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 20px;
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  color: rgba(255,255,255,0.4);
-}
-.sprint-stat-chip strong {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-@media (max-width: 900px) {
-  .kanban-board { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .kanban-board { grid-template-columns: 1fr; }
-}
-
-.team-notes-area {
-  margin-top: 32px;
-}
-.team-notes-area textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
-  color: var(--white);
-  font-family: var(--font);
-  font-size: 13px;
-  line-height: 1.6;
-  resize: vertical;
-  outline: none;
-  transition: border-color .2s;
-}
-.team-notes-area textarea:focus {
-  border-color: rgba(5,171,133,0.3);
-}
-.team-notes-area .team-notes-save {
-  margin-top: 12px;
-  padding: 8px 24px;
-  background: rgba(5,171,133,0.15);
-  color: var(--green);
-  border: 1px solid rgba(5,171,133,0.2);
-  border-radius: 4px;
-  font-family: var(--font);
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all .2s;
-}
-.team-notes-area .team-notes-save:hover {
-  background: rgba(5,171,133,0.25);
-}
-
-.footer-team-link {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 9px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.12);
-  text-decoration: none;
-  transition: color .3s;
-}
-.footer-team-link:hover {
-  color: rgba(5,171,133,0.5);
-}
-
-@media (max-width: 700px) {
-  .team-dash-header { padding: 16px 24px; }
-  .team-login-card { padding: 32px 24px; }
-}
-
-/* ── SPLASH COVER ── */
-.section-splash {
-  background: var(--teal);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-/* subtle grain texture */
-.section-splash::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px,
-    transparent 1px, transparent 28px
-  );
-  pointer-events: none;
-}
-.splash-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  text-align: center;
-  padding: 0 32px;
-}
-.splash-scroll-hint {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  animation: splashFadeIn 1s ease forwards 1.8s;
-}
-.splash-scroll-hint span {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-}
-.splash-scroll-line {
-  width: 1px;
-  height: 36px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
-}
-@keyframes splashFadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── LANG TOGGLE ── */
-.lang-toggle {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.7);
-  font-family: var(--font);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-left: 8px;
-}
-.lang-toggle:hover {
-  background: rgba(255,255,255,0.14);
-  color: var(--white);
-}
+  :root {
+    --green:   #05ab85;
+    --teal:    #063e51;
+    --gold:    #bf9138;
+    --lime:    #d3e390;
+    --sky:     #bbd7f1;
+    --cream:   #fffdf9;
+    --white:   #ffffff;
+    --font:    'Clear Sans', Verdana, sans-serif;
+
+    --gap:     14px;   /* gap between blocks */
+    --radius:  12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--cream);
+    color: var(--teal);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 56px 32px;
+  }
+
+  .page { width: 100%; max-width: 1040px; }
+
+  /* ── HEADER ── */
+  .header { margin-bottom: 48px; }
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--teal);
+    margin-bottom: 12px;
+    letter-spacing: -0.4px;
+  }
+  .header h1 span { color: var(--green); }
+  .header p {
+    font-size: 14px;
+    color: var(--teal);
+    opacity: 0.6;
+    max-width: 520px;
+    line-height: 1.65;
+  }
+
+  /* ══════════════════════════════════════
+     MAIN LAYOUT
+     Left col: LL card (fixed width)
+     Right col: 4 layer blocks + flow arrows
+  ══════════════════════════════════════ */
+  .diagram {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  /* ── LEFT: LIVING LAB ── */
+  .ll-outer {
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ll-card {
+    background: var(--teal);
+    border-radius: var(--radius);
+    padding: 26px 20px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* faint horizontal grain */
+  .ll-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px,
+      transparent 1px, transparent 22px
+    );
+    pointer-events: none;
+  }
+
+  .ll-badge {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    align-self: flex-start;
+  }
+
+  .ll-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .ll-desc {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .ll-rule {
+    width: 28px;
+    height: 2px;
+    background: var(--green);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .ll-fns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .ll-fn {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+  }
+  .fn-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .fn-body strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1px;
+  }
+  .fn-body span {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .ll-flow {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .ll-flow-row {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .ll-flow-row span:first-child {
+    color: var(--green);
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  /* ── RIGHT: LAYERS STACK ── */
+  .layers-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Each layer block */
+  .layer-block {
+    border-radius: var(--radius);
+    padding: 24px 28px 22px;
+    position: relative;
+    border: 1.5px solid transparent;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .layer-block:hover {
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 0 rgba(5,171,133,0.18);
+  }
+
+  /* Left accent strip */
+  .layer-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .layer-num {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .layer-title {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--teal);
+    margin-bottom: 3px;
+  }
+  .layer-tagline {
+    font-size: 12.5px;
+    color: var(--teal);
+    opacity: 0.5;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+
+  /* ── FLOW ARROW between blocks ── */
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: var(--gap) 0;
+    margin-left: 28px;
+    position: relative;
+  }
+
+  .flow-line {
+    width: 1px;
+    flex-shrink: 0;
+    background: rgba(5,171,133,0.25);
+    align-self: stretch;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  .flow-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid rgba(5,171,133,0.25);
+    border-radius: 20px;
+    padding: 5px 14px 5px 10px;
+    margin-left: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-arrow-icon {
+    width: 18px;
+    height: 18px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .flow-arrow-icon svg {
+    width: 9px;
+    height: 9px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .flow-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--teal);
+    opacity: 0.6;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYER COLORS ── */
+
+  /* L4 — gold */
+  .l4 { background: rgba(191,145,56,0.06); border-color: rgba(191,145,56,0.2); }
+  .l4::before { background: var(--gold); }
+  .l4 .layer-num { color: var(--gold); }
+  .l4 .tag { background: rgba(191,145,56,0.13); color: #6b4210; }
+
+  /* L3 — sky */
+  .l3 { background: rgba(187,215,241,0.18); border-color: rgba(187,215,241,0.6); }
+  .l3::before { background: #5592c4; }
+  .l3 .layer-num { color: #1a5a8a; }
+  .l3 .tag { background: rgba(187,215,241,0.45); color: #0f3a60; }
+
+  /* L2 — lime */
+  .l2 { background: rgba(211,227,144,0.2); border-color: rgba(180,200,80,0.35); }
+  .l2::before { background: #8aaa30; }
+  .l2 .layer-num { color: #4a6b10; }
+  .l2 .tag { background: rgba(211,227,144,0.55); color: #3a5510; }
+
+  /* L1 — green (foundation) */
+  .l1 { background: rgba(5,171,133,0.07); border-color: rgba(5,171,133,0.25); }
+  .l1::before { background: var(--green); }
+  .l1 .layer-num { color: var(--green); }
+  .l1 .tag { background: rgba(5,171,133,0.13); color: #025c47; }
+
+  /* ── TERRITORY ── */
+  .territory {
+    margin-top: 20px;
+    border: 1.5px dashed rgba(5,171,133,0.28);
+    border-radius: 10px;
+    padding: 13px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: 220px;
+    background: rgba(5,171,133,0.02);
+  }
+  .terr-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    flex-shrink: 0;
+  }
+  .terr-div {
+    width: 1px;
+    height: 18px;
+    background: rgba(5,171,133,0.2);
+    flex-shrink: 0;
+  }
+  .terr-places { display: flex; gap: 7px; flex-wrap: wrap; }
+  .terr-place {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--teal);
+    background: rgba(6,62,81,0.07);
+    border: 1px solid rgba(6,62,81,0.12);
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+  .terr-sub {
+    margin-left: auto;
+    font-size: 9.5px;
+    color: rgba(6,62,81,0.3);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(6,62,81,0.1);
+  }
+  .leg-item { display: flex; gap: 10px; }
+  .leg-bar {
+    width: 3px;
+    height: 36px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .leg-strong {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 3px;
+  }
+  .leg-text {
+    font-size: 10.5px;
+    color: var(--teal);
+    opacity: 0.55;
+    line-height: 1.55;
+  }
+
+  /* ── ANIMS ── */
+  @keyframes up {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .ll-card    { animation: up .4s ease both .04s; }
+  .l4         { animation: up .4s ease both .08s; }
+  .flow-arrow.fa1 { animation: up .4s ease both .13s; }
+  .l3         { animation: up .4s ease both .16s; }
+  .flow-arrow.fa2 { animation: up .4s ease both .21s; }
+  .l2         { animation: up .4s ease both .24s; }
+  .flow-arrow.fa3 { animation: up .4s ease both .29s; }
+  .l1         { animation: up .4s ease both .32s; }
+  .territory  { animation: up .4s ease both .38s; }
 </style>
 </head>
 <body>
+<div class="page">
 
-<!-- ── NAV ── -->
-<!-- ── SPLASH COVER (Slide 1) ── -->
-<section class="section-splash" style="background-image:url('splash-bg.jpg'); background-size:cover; background-position:center;">
-  <div class="splash-scroll-hint">
-    <span>Scroll</span>
-    <div class="splash-scroll-line"></div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">BIOMAS · Natural Intelligence</div>
+    <h1>The coordination OS<br>for <span>living territories</span></h1>
+    <p>Four operating layers — grounded in shared data, expressed through coordination — connected by a Living Lab presence embedded in the field.</p>
   </div>
-</section>
 
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="logo.png" alt="BIOMAS Natural Intelligence" class="nav-logo-img"></a>
-  <ul class="nav-links">
-    <li><a href="#solution" data-i18n="nav_os">The OS</a></li>
-    <li><a href="#layers" data-i18n="nav_how">How it works</a></li>
-    <li><a href="#why" data-i18n="nav_why">Why different</a></li>
-    <li><a href="#pilot" data-i18n="nav_pilot">Pilot</a></li>
-    <li><a href="mailto:admin@biomas.ai" class="nav-cta" data-i18n="nav_cta">Get in touch</a></li>
-    <li><a href="#" onclick="openTeamLogin(); return false;" style="opacity:0.3;font-size:10px;" data-i18n="nav_team">Team</a></li>
-    <li><button class="lang-toggle" onclick="toggleLandingLang()" id="btnLandingLang">PT</button></li>
-  </ul>
-</nav>
+  <!-- DIAGRAM -->
+  <div class="diagram">
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-dot"></span>
-      BIOMAS · Natural Intelligence™
-    </div>
-    <h1 data-i18n-html="hero_h1">
-      The coordination OS<br>
-      living systems<br>
-      <span class="accent">always needed</span>
-    </h1>
-    <p class="hero-sub" data-i18n="hero_sub">
-      For four billion years, life on Earth has been solving the hardest coordination problem that exists. BIOMAS brings that same natural intelligence to the people, capital, and knowledge of a living territory.
-    </p>
-    <div class="hero-actions">
-      <a href="#solution" class="btn-primary" data-i18n="btn_how">How it works</a>
-      <a href="https://leticiacqueiroz-biomas.github.io/censopiracanga2025/" target="_blank" rel="noopener noreferrer" class="btn-ghost" data-i18n="btn_pilot">See the pilot</a>
-    </div>
-  </div>
-  <div class="scroll-hint">
-    <span data-i18n="scroll">Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- ── PROBLEM ── -->
-<section class="section-problem" id="problem">
-  <div class="container">
-    <div class="problem-layout">
-      <div class="problem-left reveal">
-        <div class="section-label" data-i18n="prob_label">The problem</div>
-        <h2 data-i18n-html="prob_h2">The money is there.<br>The science is there.<br><em>The coordination isn't.</em></h2>
-        <p data-i18n="prob_p1">Go into any watershed under ecological pressure and you will find the same story. One group is planting trees funded by a European foundation. Another is negotiating a water agreement with farmers. A third is running a carbon credit scheme that has nothing to do with either.</p>
-        <p data-i18n="prob_p2">Everyone is working hard. Nobody is working together. Capital keeps flowing to what looks good in a grant report rather than to what the landscape actually needs.</p>
-        <p data-i18n="prob_p3">Not because we lack solutions — but because no one sees the system they belong to.</p>
-        <p style="font-weight:700; color:var(--teal); font-size:15px;" data-i18n="prob_p4">This is a coordination problem. And it has always had a solution.</p>
-      </div>
-      <div class="problem-right reveal reveal-delay-2">
-        <div class="problem-actors">
-          <div class="actor-row a1 reveal reveal-delay-1">
-            <div class="actor-icon">🌱</div>
-            <div class="actor-text">
-              <strong data-i18n="actor1_name">European foundation</strong>
-              <span data-i18n="actor1_desc">Funding tree-planting in the upper watershed</span>
+    <!-- LIVING LAB -->
+    <div class="ll-outer">
+      <div class="ll-card">
+        <div class="ll-badge">Transversal</div>
+        <div class="ll-title">Living Lab<br>Coordination</div>
+        <div class="ll-desc">Embedded in the territory — coordinates the OS implementation and feeds continuous improvement into each layer.</div>
+        <div class="ll-rule"></div>
+        <div class="ll-fns">
+          <div class="ll-fn">
+            <div class="fn-dot"></div>
+            <div class="fn-body">
+              <strong>Deploys the OS</strong>
+              <span>Implements BIOMAS in the field, day to day</span>
             </div>
           </div>
-          <div class="no-connection">
-            <div class="no-conn-line"></div>
-            <span data-i18n="no_data">no shared data</span>
-            <div class="no-conn-line"></div>
-          </div>
-          <div class="actor-row a2 reveal reveal-delay-2">
-            <div class="actor-icon">🤝</div>
-            <div class="actor-text">
-              <strong data-i18n="actor2_name">Local NGO</strong>
-              <span data-i18n="actor2_desc">Negotiating water agreements with farmers</span>
+          <div class="ll-fn">
+            <div class="fn-dot"></div>
+            <div class="fn-body">
+              <strong>Ground-truth feedback</strong>
+              <span>Collects what the system can't see from above</span>
             </div>
           </div>
-          <div class="no-connection">
-            <div class="no-conn-line"></div>
-            <span data-i18n="no_coord">no coordination</span>
-            <div class="no-conn-line"></div>
+          <div class="ll-fn">
+            <div class="fn-dot"></div>
+            <div class="fn-body">
+              <strong>Continuous improvement</strong>
+              <span>Feeds learning back into each layer</span>
+            </div>
           </div>
-          <div class="actor-row a3 reveal reveal-delay-3">
-            <div class="actor-icon">📊</div>
-            <div class="actor-text">
-              <strong data-i18n="actor3_name">Carbon credit scheme</strong>
-              <span data-i18n="actor3_desc">Running independently, unconnected to either</span>
+          <div class="ll-fn">
+            <div class="fn-dot"></div>
+            <div class="fn-body">
+              <strong>Actor coordination</strong>
+              <span>Activates and connects agents across layers</span>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SOLUTION ── -->
-<section class="section-solution" id="solution">
-  <div class="container">
-    <div class="solution-header reveal">
-      <div class="section-label" data-i18n="sol_label">The solution</div>
-      <h2 data-i18n-html="sol_h2">The operating system that enables bioregions to <span class="accent">think, plan, and evolve</span> like living systems</h2>
-      <p data-i18n-html="sol_p">BIOMAS doesn't implement projects, own land, or deploy capital directly. It builds the shared intelligence infrastructure that makes everything else possible — <strong style="color:rgba(255,255,255,0.85)">Sense. Plan. Act.</strong></p>
-    </div>
-
-    <div class="os-card reveal reveal-delay-1">
-      <div class="os-label" data-i18n="os_label">The operating system metaphor</div>
-      <blockquote data-i18n-html="os_quote">
-        Think about what an operating system does for a computer.<br>
-        It doesn't run the applications — it creates the environment<br>
-        where <strong>all the applications can work together.</strong><br>
-        <br>
-        That is what BIOMAS does for a watershed.
-      </blockquote>
-    </div>
-
-    <!-- FOUR LAYERS — new diagram -->
-    <div id="layers" class="diagram-wrapper reveal reveal-delay-2">
-
-      <div class="diagram">
-
-        <!-- LEFT: LIVING LAB -->
-        <div class="ll-outer">
-          <div class="ll-card">
-            <div class="ll-badge">Transversal</div>
-            <div class="ll-title" data-i18n-html="ll_title">Living Lab<br>Coordination</div>
-            <div class="ll-desc" data-i18n="ll_desc">Embedded in the territory — coordinates the OS implementation and feeds continuous improvement into each layer.</div>
-            <div class="ll-rule"></div>
-            <div class="ll-fns">
-              <div class="ll-fn">
-                <div class="fn-dot"></div>
-                <div class="fn-body">
-                  <strong data-i18n="ll_fn1_title">Deploys the OS</strong>
-                  <span data-i18n="ll_fn1_desc">Implements BIOMAS in the field, day to day</span>
-                </div>
-              </div>
-              <div class="ll-fn">
-                <div class="fn-dot"></div>
-                <div class="fn-body">
-                  <strong data-i18n="ll_fn2_title">Ground-truth feedback</strong>
-                  <span data-i18n="ll_fn2_desc">Collects what the system can't see from above</span>
-                </div>
-              </div>
-              <div class="ll-fn">
-                <div class="fn-dot"></div>
-                <div class="fn-body">
-                  <strong data-i18n="ll_fn3_title">Continuous improvement</strong>
-                  <span data-i18n="ll_fn3_desc">Feeds learning back into each layer</span>
-                </div>
-              </div>
-              <div class="ll-fn">
-                <div class="fn-dot"></div>
-                <div class="fn-body">
-                  <strong data-i18n="ll_fn4_title">Actor coordination</strong>
-                  <span data-i18n="ll_fn4_desc">Activates and connects agents across layers</span>
-                </div>
-              </div>
-            </div>
-            <div class="ll-flow">
-              <div class="ll-flow-row"><span>↓</span><span data-i18n="ll_flow1">Implements into territory</span></div>
-              <div class="ll-flow-row"><span>↑</span><span data-i18n="ll_flow2">Returns feedback upward</span></div>
-              <div class="ll-flow-row"><span>↔</span><span data-i18n="ll_flow3">Connects all four layers</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT: LAYERS STACK -->
-        <div class="layers-col">
-
-          <!-- L4 -->
-          <div class="layer-block l4-b">
-            <div class="layer-num" data-i18n="l4_num">Layer 4</div>
-            <div class="layer-title" data-i18n="l4_title">Bioregional Financing Facility</div>
-            <div class="layer-tagline" data-i18n="l4_tagline">Capital following ecological truth</div>
-            <div class="layer-tags">
-              <span class="layer-tag">Impact investors</span>
-              <span class="layer-tag">Philanthropists</span>
-              <span class="layer-tag">Governments</span>
-              <span class="layer-tag">Blended finance</span>
-              <span class="layer-tag">Carbon credits</span>
-            </div>
-          </div>
-
-          <!-- FLOW 4→3 -->
-          <div class="flow-arrow">
-            <div class="flow-line"></div>
-            <div class="flow-pill">
-              <div class="flow-arrow-icon">
-                <svg viewBox="0 0 10 10"><polyline points="2,7 5,3 8,7"/></svg>
-              </div>
-              <span class="flow-label" data-i18n="flow43">Coordination surfaces priorities for capital</span>
-            </div>
-          </div>
-
-          <!-- L3 -->
-          <div class="layer-block l3-b">
-            <div class="layer-num" data-i18n="l3_num">Layer 3</div>
-            <div class="layer-title" data-i18n="l3_title">Multi-Agent System</div>
-            <div class="layer-tagline" data-i18n="l3_tagline">Where coordination becomes action</div>
-            <div class="layer-tags">
-              <span class="layer-tag">Communities</span>
-              <span class="layer-tag">Landowners</span>
-              <span class="layer-tag">Scientists</span>
-              <span class="layer-tag">NGOs</span>
-              <span class="layer-tag">Local governments</span>
-              <span class="layer-tag">AI tools</span>
-            </div>
-          </div>
-
-          <!-- FLOW 3→2 -->
-          <div class="flow-arrow">
-            <div class="flow-line"></div>
-            <div class="flow-pill">
-              <div class="flow-arrow-icon">
-                <svg viewBox="0 0 10 10"><polyline points="2,7 5,3 8,7"/></svg>
-              </div>
-              <span class="flow-label" data-i18n="flow32">Planning guides collective action</span>
-            </div>
-          </div>
-
-          <!-- L2 -->
-          <div class="layer-block l2-b">
-            <div class="layer-num" data-i18n="l2_num">Layer 2</div>
-            <div class="layer-title" data-i18n="l2_title">Bioregional Resource Planning</div>
-            <div class="layer-tagline" data-i18n="l2_tagline">Turning data into real decisions</div>
-            <div class="layer-tags">
-              <span class="layer-tag">Water allocation</span>
-              <span class="layer-tag">Land use</span>
-              <span class="layer-tag">Biodiversity investment</span>
-              <span class="layer-tag">Infrastructure</span>
-              <span class="layer-tag">Within ecological limits</span>
-            </div>
-          </div>
-
-          <!-- FLOW 2→1 -->
-          <div class="flow-arrow">
-            <div class="flow-line"></div>
-            <div class="flow-pill">
-              <div class="flow-arrow-icon">
-                <svg viewBox="0 0 10 10"><polyline points="2,7 5,3 8,7"/></svg>
-              </div>
-              <span class="flow-label" data-i18n="flow21">Data grounds every decision</span>
-            </div>
-          </div>
-
-          <!-- L1 -->
-          <div class="layer-block l1-b">
-            <div class="layer-num" data-i18n="l1_num">Layer 1 · Foundation</div>
-            <div class="layer-title" data-i18n="l1_title">Bioregional Data Intelligence</div>
-            <div class="layer-tagline" data-i18n="l1_tagline">The living memory of the watershed</div>
-            <div class="layer-tags">
-              <span class="layer-tag">Ecological data</span>
-              <span class="layer-tag">Social dynamics</span>
-              <span class="layer-tag">Economic activity</span>
-              <span class="layer-tag">Geospatial</span>
-              <span class="layer-tag">Governance</span>
-              <span class="layer-tag">GPTLEM framework</span>
-            </div>
-          </div>
-
-        </div><!-- /layers-col -->
-      </div><!-- /diagram -->
-
-      <!-- TERRITORY -->
-      <div class="territory-bar">
-        <span class="terr-label" data-i18n="terr_label">Pilot territories</span>
-        <div class="terr-div"></div>
-        <div class="terr-places">
-          <span class="terr-place">Piracanga, Bahia</span>
-          <span class="terr-place">Serra Grande, Bahia</span>
-        </div>
-        <div class="terr-sub">APA Serra Grande–Itacaré · Mata Atlântica</div>
-      </div>
-
-      <!-- LEGEND -->
-      <div class="diagram-legend">
-        <div class="leg-item">
-          <div class="leg-bar" style="background:var(--green)"></div>
-          <div>
-            <div class="leg-strong" data-i18n="leg1_title">Layers are interdependent</div>
-            <div class="leg-text" data-i18n="leg1_text">Data grounds planning. Planning guides coordination. Coordination attracts capital.</div>
-          </div>
-        </div>
-        <div class="leg-item">
-          <div class="leg-bar" style="background:var(--teal)"></div>
-          <div>
-            <div class="leg-strong" data-i18n="leg2_title">Living Lab Coordinator</div>
-            <div class="leg-text" data-i18n="leg2_text">Embedded in the territory — coordinates OS implementation and feeds continuous improvement into each layer.</div>
-          </div>
-        </div>
-        <div class="leg-item">
-          <div class="leg-bar" style="background:var(--gold)"></div>
-          <div>
-            <div class="leg-strong" data-i18n="leg3_title">Shared intelligence</div>
-            <div class="leg-text" data-i18n="leg3_text">All actors see the same reality — coordinating from evidence rather than assumption.</div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /diagram-wrapper -->
-  </div>
-</section>
-
-<!-- ── WHY DIFFERENT ── -->
-<section class="section-why" id="why">
-  <div class="container">
-    <div class="why-header reveal">
-      <div class="section-label" data-i18n="why_label">Why this is different</div>
-      <h2 data-i18n-html="why_h2">Built for what the landscape<br>actually needs</h2>
-      <p data-i18n="why_p">Most conservation work arrives in a place with the solution already decided. BIOMAS builds the infrastructure that lets the place surface its own solutions.</p>
-    </div>
-
-    <div class="why-grid">
-      <div class="why-card reveal reveal-delay-1">
-        <div class="why-label" data-i18n="why1_label">Conservation work</div>
-        <div class="why-contrast" data-i18n-html="why1_contrast"><s>Arrives with the solution already decided</s></div>
-        <div class="why-point" data-i18n="why1_point">BIOMAS builds infrastructure for local solutions</div>
-        <div class="why-body" data-i18n="why1_body">Grounded in local knowledge and ecological reality — not donor preference or grant templates.</div>
-      </div>
-      <div class="why-card reveal reveal-delay-2">
-        <div class="why-label" data-i18n="why2_label">Conservation finance</div>
-        <div class="why-contrast" data-i18n-html="why2_contrast"><s>Goes to what is already measurable and familiar to funders</s></div>
-        <div class="why-point" data-i18n="why2_point">Capital follows ecological truth</div>
-        <div class="why-body" data-i18n="why2_body">BIOMAS makes the whole living system readable, so capital can follow what the ecosystem needs.</div>
-      </div>
-      <div class="why-card reveal reveal-delay-3">
-        <div class="why-label" data-i18n="why3_label">Multi-stakeholder processes</div>
-        <div class="why-contrast" data-i18n-html="why3_contrast"><s>Bring people to a room and hope goodwill is enough</s></div>
-        <div class="why-point" data-i18n="why3_point">Shared data layer first</div>
-        <div class="why-body" data-i18n="why3_body">When people come together, they are already looking at the same evidence — working out what to do about it together.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── RESULT ── -->
-<section class="section-result">
-  <div class="container">
-    <div class="result-inner reveal">
-      <div class="section-label" data-i18n="res_label">The result</div>
-      <h2 data-i18n-html="res_h2">A watershed that functions<br>like <span class="accent">the living system it already is</span></h2>
-      <p data-i18n="res_p1">Where actors coordinate around shared intelligence rather than working in isolation. Where capital flows to what the ecosystem actually needs. Where local people and technology co-steer toward regeneration.</p>
-      <p data-i18n="res_p2">Because the system makes the right path visible to everyone at once.</p>
-      <div class="outcomes">
-        <span class="outcome-pill" data-i18n="out1">Rivers run cleaner</span>
-        <span class="outcome-pill" data-i18n="out2">Soils store more carbon</span>
-        <span class="outcome-pill" data-i18n="out3">Biodiversity recovers</span>
-        <span class="outcome-pill dim" data-i18n="out4">Local livelihoods grow</span>
-        <span class="outcome-pill dim" data-i18n="out5">Communities self-govern</span>
-        <span class="outcome-pill dim" data-i18n="out6">Capital flows efficiently</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PILOT ── -->
-<section class="section-pilot" id="pilot">
-  <div class="container">
-    <div class="pilot-layout">
-      <div class="pilot-left reveal">
-        <div class="section-label" data-i18n="pilot_label">Current pilot</div>
-        <h3 data-i18n-html="pilot_h3">Atlantic Forest,<br>Bahia, Brazil</h3>
-        <p data-i18n="pilot_p1">BIOMAS is currently being developed in the Atlantic Forest region of Bahia — one of the most biodiverse and ecologically pressured landscapes on Earth.</p>
-        <p data-i18n="pilot_p2">The pilot territories of Piracanga and Serra Grande serve as living laboratories for the full BIOMAS model, integrating community census data, geospatial intelligence, and the GPTLEM territorial framework.</p>
-        <a href="https://leticiacqueiroz-biomas.github.io/censopiracanga2025/" target="_blank" rel="noopener noreferrer" class="btn-pilot" data-i18n="pilot_btn">See the pilot →</a>
-      </div>
-      <div class="pilot-right reveal reveal-delay-2">
-        <div class="pilot-facts">
-          <div class="pilot-fact">
-            <div class="pilot-fact-val">2</div>
-            <div class="pilot-fact-label" data-i18n="fact1">Pilot territories</div>
-          </div>
-          <div class="pilot-fact">
-            <div class="pilot-fact-val">9</div>
-            <div class="pilot-fact-label" data-i18n="fact2">Active working groups</div>
-          </div>
-          <div class="pilot-fact">
-            <div class="pilot-fact-val">2025</div>
-            <div class="pilot-fact-label" data-i18n="fact3">Community census</div>
-          </div>
-          <div class="pilot-fact">
-            <div class="pilot-fact-val">APA</div>
-            <div class="pilot-fact-label">Serra Grande–Itacaré</div>
-          </div>
+        <div class="ll-flow">
+          <div class="ll-flow-row"><span>↓</span><span>Implements into territory</span></div>
+          <div class="ll-flow-row"><span>↑</span><span>Returns feedback upward</span></div>
+          <div class="ll-flow-row"><span>↔</span><span>Connects all four layers</span></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ── CTA ── -->
-<section class="section-cta" id="contact">
-  <div class="container reveal">
-    <h2 data-i18n-html="cta_h2">Ready to build the OS<br>for your bioregion?</h2>
-    <p data-i18n="cta_p">BIOMAS is expanding to new territories. If you work with a watershed under pressure, let's talk.</p>
-    <a href="mailto:admin@biomas.ai" class="btn-dark" data-i18n="cta_btn">Get in touch</a>
-  </div>
-</section>
+    <!-- LAYERS STACK -->
+    <div class="layers-col">
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-logo">
-    <img src="logo.png" alt="BIOMAS Natural Intelligence" class="footer-logo-img">
-  </div>
-  <div class="footer-right">
-    Piracanga · Serra Grande · Bahia, Brazil<br>
-    Atlantic Forest · APA Serra Grande–Itacaré<br>
-    <a href="mailto:admin@biomas.ai">admin@biomas.ai</a><br>
-    <a href="#" class="footer-team-link" onclick="openTeamLogin(); return false;" data-i18n="footer_team">team access</a>
-  </div>
-</footer>
+      <!-- L4 -->
+      <div class="layer-block l4">
+        <div class="layer-num">Layer 4</div>
+        <div class="layer-title">Bioregional Financing Facility</div>
+        <div class="layer-tagline">Capital following ecological truth</div>
+        <div class="tags">
+          <span class="tag">Impact investors</span>
+          <span class="tag">Philanthropists</span>
+          <span class="tag">Governments</span>
+          <span class="tag">Blended finance</span>
+          <span class="tag">Carbon credits</span>
+        </div>
+      </div>
 
-<!-- ── TEAM LOGIN OVERLAY ── -->
-<div class="team-overlay" id="teamOverlay">
-  <div class="team-login-card">
-    <button class="team-close-btn" onclick="closeTeamLogin()">&times;</button>
-    <h3>Biomas Team</h3>
-    <p>Restricted access for team members.</p>
-    <input type="password" id="teamPassword" placeholder="Password" onkeydown="if(event.key==='Enter') teamLogin()">
-    <button class="team-login-btn" onclick="teamLogin()">Sign in</button>
-    <div class="team-login-error" id="teamError">Incorrect password. Please try again.</div>
+      <!-- FLOW 4→3 -->
+      <div class="flow-arrow fa1">
+        <div class="flow-line"></div>
+        <div class="flow-pill">
+          <div class="flow-arrow-icon">
+            <svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg>
+          </div>
+          <span class="flow-label">Coordination surfaces priorities for capital</span>
+        </div>
+      </div>
+
+      <!-- L3 -->
+      <div class="layer-block l3">
+        <div class="layer-num">Layer 3</div>
+        <div class="layer-title">Multi-Agent System</div>
+        <div class="layer-tagline">Where coordination becomes action</div>
+        <div class="tags">
+          <span class="tag">Communities</span>
+          <span class="tag">Landowners</span>
+          <span class="tag">Scientists</span>
+          <span class="tag">NGOs</span>
+          <span class="tag">Local governments</span>
+          <span class="tag">AI tools</span>
+        </div>
+      </div>
+
+      <!-- FLOW 3→2 -->
+      <div class="flow-arrow fa2">
+        <div class="flow-line"></div>
+        <div class="flow-pill">
+          <div class="flow-arrow-icon">
+            <svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg>
+          </div>
+          <span class="flow-label">Planning guides collective action</span>
+        </div>
+      </div>
+
+      <!-- L2 -->
+      <div class="layer-block l2">
+        <div class="layer-num">Layer 2</div>
+        <div class="layer-title">Bioregional Resource Planning</div>
+        <div class="layer-tagline">Turning data into real decisions</div>
+        <div class="tags">
+          <span class="tag">Water allocation</span>
+          <span class="tag">Land use</span>
+          <span class="tag">Biodiversity investment</span>
+          <span class="tag">Infrastructure</span>
+          <span class="tag">Within ecological limits</span>
+        </div>
+      </div>
+
+      <!-- FLOW 2→1 -->
+      <div class="flow-arrow fa3">
+        <div class="flow-line"></div>
+        <div class="flow-pill">
+          <div class="flow-arrow-icon">
+            <svg viewBox="0 0 10 10"><polyline points="2,3 5,7 8,3"/></svg>
+          </div>
+          <span class="flow-label">Data grounds every decision</span>
+        </div>
+      </div>
+
+      <!-- L1 -->
+      <div class="layer-block l1">
+        <div class="layer-num">Layer 1 · Foundation</div>
+        <div class="layer-title">Bioregional Data Intelligence</div>
+        <div class="layer-tagline">The living memory of the watershed</div>
+        <div class="tags">
+          <span class="tag">Ecological data</span>
+          <span class="tag">Social dynamics</span>
+          <span class="tag">Economic activity</span>
+          <span class="tag">Geospatial</span>
+          <span class="tag">Governance</span>
+          <span class="tag">GPTLEM framework</span>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <!-- TERRITORY -->
+  <div class="territory">
+    <span class="terr-label">Pilot territories</span>
+    <div class="terr-div"></div>
+    <div class="terr-places">
+      <span class="terr-place">Piracanga, Bahia</span>
+      <span class="terr-place">Serra Grande, Bahia</span>
+    </div>
+    <div class="terr-sub">APA Serra Grande–Itacaré · Mata Atlântica</div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="leg-item">
+      <div class="leg-bar" style="background:var(--green)"></div>
+      <div>
+        <div class="leg-strong">Layers are interdependent</div>
+        <div class="leg-text">Data grounds planning. Planning guides coordination. Coordination attracts capital.</div>
+      </div>
+    </div>
+    <div class="leg-item">
+      <div class="leg-bar" style="background:var(--teal)"></div>
+      <div>
+        <div class="leg-strong">Living Lab Coordinator</div>
+        <div class="leg-text">Embedded in the territory — coordinates OS implementation and feeds continuous improvement into each layer.</div>
+      </div>
+    </div>
+    <div class="leg-item">
+      <div class="leg-bar" style="background:var(--gold)"></div>
+      <div>
+        <div class="leg-strong">Shared intelligence</div>
+        <div class="leg-text">All actors see the same reality — coordinating from evidence rather than assumption.</div>
+      </div>
+    </div>
+  </div>
+
 </div>
-
-<!-- ── TEAM DASHBOARD ── -->
-<div class="team-dashboard" id="teamDashboard">
-  <div class="team-dash-header">
-    <h2>Biomas · Team Hub</h2>
-    <div class="team-nav-tabs">
-      <button class="team-nav-tab active" onclick="switchTeamTab('deliverables')">Discovery Year</button>
-      <button class="team-nav-tab" onclick="switchTeamTab('tasks')">Task Manager</button>
-      <button class="team-nav-tab" onclick="switchTeamTab('links')">Internal Links &amp; Materials</button>
-      <button class="team-nav-tab" onclick="switchTeamTab('notes')">Observations</button>
-    </div>
-    <button class="team-dash-exit" onclick="closeTeamDashboard()">← Back to site</button>
-  </div>
-  <div class="team-dash-content">
-
-    <!-- ═══ TAB: TASKS ═══ -->
-    <div class="team-tab-panel" id="tab-tasks">
-
-      <div id="tasksLoading" class="team-loading">Loading tasks from Google Sheets...</div>
-
-      <div id="tasksContent" style="display:none;">
-
-        <!-- Sprint Tabs -->
-        <div class="sprint-tabs" id="sprintTabs"></div>
-
-        <!-- Sprint Stats Indicators -->
-        <div class="sprint-stats-row" id="sprintStats"></div>
-
-        <!-- Stats -->
-        <div class="stats-bar" id="statsBar"></div>
-
-        <!-- Progress -->
-        <div class="progress-bar-container">
-          <div class="progress-bar-fill" id="progressBar" style="width:0%; background: linear-gradient(90deg, var(--green), var(--gold));"></div>
-        </div>
-
-        <!-- View Switcher + Actions -->
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-          <div class="sprint-view-controls" id="viewSwitcher">
-            <button class="sprint-filter-btn active" onclick="switchView('kanban')">Kanban</button>
-            <button class="sprint-filter-btn" onclick="switchView('projects')">By Project</button>
-            <button class="sprint-filter-btn" onclick="switchView('person')">By Person</button>
-            <button class="sprint-filter-btn" onclick="switchView('list')">List</button>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <button class="sprint-filter-btn" onclick="showAddTask()" style="background:rgba(5,171,133,0.15);color:var(--green);border-color:rgba(5,171,133,0.3);" id="btnAddTask">+ New Task</button>
-            <button class="sprint-filter-btn" onclick="syncFromSheets()" id="btnSync" title="Refresh data from Google Sheets now" style="background:rgba(187,215,241,0.1);color:var(--sky);border-color:rgba(187,215,241,0.2);">&#8635; Sync Sheets</button>
-            <a href="https://docs.google.com/spreadsheets/d/1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g/edit" target="_blank"
-               style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.25);text-decoration:none;">
-              Sheets &nearr;
-            </a>
-            <button class="team-refresh-btn" onclick="resetToBaseline()" title="Reset to original spreadsheet data">&#8635; Reset</button>
-          </div>
-        </div>
-
-        <!-- Tasks Container -->
-        <div id="tasksContainer"></div>
-      </div>
-
-      <!-- Add Task Modal -->
-      <div class="team-overlay" id="addTaskModal">
-        <div class="team-login-card" style="max-width:520px;text-align:left;">
-          <button class="team-close-btn" onclick="hideAddTask()">&times;</button>
-          <h3 style="margin-bottom:20px;">New Task</h3>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <input type="text" id="newTaskName" placeholder="Task name *" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-              <input type="text" id="newTaskProject" placeholder="Project" list="projectList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-              <datalist id="projectList">
-                <option value="INTELIGENCIA GEO ESPACIAL">
-                <option value="DATA COLLECTION">
-                <option value="BIOMAS BUSINESS PLAN">
-                <option value="PARQUE CONDURU - SISTEMAS DE SANEAMENTO">
-                <option value="PROJECT IMPLEMENTATION">
-                <option value="SCIENCE INTEGRATION">
-                <option value="AGENTS COORDINATION">
-                <option value="BIOREGIONAL FINANCING FACILITY">
-              </datalist>
-              <input type="text" id="newTaskLab" placeholder="Living Lab" list="labList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-              <datalist id="labList">
-                <option value="PIRACANGA ECOVILLAGE">
-                <option value="SERRA GRANDE">
-                <option value="CONDURU PARK">
-                <option value="PIRACANGA WATERSHED">
-                <option value="TIJUIPE WATERSHED">
-                <option value="GLOBAL">
-                <option value="N/A">
-              </datalist>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-              <input type="text" id="newTaskWho" placeholder="Owner" list="whoList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-              <datalist id="whoList">
-                <option value="LETICIA">
-                <option value="NATASHA">
-                <option value="RODRIGO">
-              </datalist>
-              <input type="number" id="newTaskSprint" placeholder="Sprint #" min="1" max="99" value="2" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-              <select id="newTaskStatus" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-                <option value="IN PROGRESS">In Progress</option>
-                <option value="SCHEDULED">Scheduled</option>
-                <option value="ON HOLD">On Hold</option>
-              </select>
-            </div>
-            <input type="text" id="newTaskPergunta" placeholder="Question we're trying to answer" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-            <input type="text" id="newTaskContexto" placeholder="Context" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-            <button onclick="addTask()" style="margin-top:8px;padding:12px;background:var(--green);color:var(--teal);font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;">Add Task</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ TAB: DISCOVERY YEAR DELIVERABLES ═══ -->
-    <div class="team-tab-panel active" id="tab-deliverables">
-      <iframe src="deliverables-y1.html" title="Discovery Year Deliverables"></iframe>
-    </div>
-
-    <!-- ═══ TAB: LINKS ═══ -->
-    <div class="team-tab-panel" id="tab-links">
-      <h3>Internal Links &amp; Materials</h3>
-      <div class="team-links-grid">
-        <div class="team-link-card">
-          <h4>Google Sheets</h4>
-          <p>Biomas sprint and task tracking spreadsheet.</p>
-          <a href="https://docs.google.com/spreadsheets/d/1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g/edit?gid=1983252305#gid=1983252305" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
-        </div>
-        <div class="team-link-card">
-          <h4>Google Drive</h4>
-          <p>Documents, presentations and shared files.</p>
-          <a href="https://drive.google.com/drive/folders/0AI6fMA_Ms8SIUk9PVA" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
-        </div>
-        <div class="team-link-card">
-          <h4>Notion Workspace</h4>
-          <p>Planning, roadmap and technical documentation.</p>
-          <a href="https://www.notion.so/BIOMAS-Discovery-Year-2025-2026-1718879987e680a6bda2ec3f3e075f0a?source=copy_link" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
-        </div>
-        <div class="team-link-card">
-          <h4>Piracanga Live Dashboard</h4>
-          <p>Territorial intelligence platform for Piracanga.</p>
-          <a href="https://leticiacqueiroz-biomas.github.io/censopiracanga2025/" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
-        </div>
-        <div class="team-link-card">
-          <h4>Instituto Somos Água Portal</h4>
-          <p>Water project portal for the Serra Grande watershed.</p>
-          <a href="https://leticiacqueiroz-biomas.github.io/somos-agua/" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ TAB: NOTES ═══ -->
-    <div class="team-tab-panel" id="tab-notes">
-      <h3>Observations</h3>
-      <div class="team-notes-area">
-        <textarea id="teamNotes" placeholder="Shared team observations and notes..."></textarea>
-        <button class="team-notes-save" onclick="saveTeamNotes()">Save notes</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-  // ── Scroll reveal ──
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
-
-  // ── Nav background on scroll ──
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40
-      ? 'rgba(6,62,81,0.97)'
-      : 'rgba(6,62,81,0.85)';
-  });
-
-  // ── TEAM AREA ──
-  const TEAM_HASH = '2603bb34fb82653fe16347f2e7f699c1749e07666f4b0665f4d911e6273d37ef';
-
-  async function hashPassword(pw) {
-    const enc = new TextEncoder().encode(pw);
-    const buf = await crypto.subtle.digest('SHA-256', enc);
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-
-  function openTeamLogin() {
-    document.getElementById('teamOverlay').classList.add('active');
-    document.getElementById('teamPassword').value = '';
-    document.getElementById('teamError').style.display = 'none';
-    setTimeout(() => document.getElementById('teamPassword').focus(), 100);
-  }
-
-  function closeTeamLogin() {
-    document.getElementById('teamOverlay').classList.remove('active');
-  }
-
-  async function teamLogin() {
-    const pw = document.getElementById('teamPassword').value;
-    const h = await hashPassword(pw);
-    if (h === TEAM_HASH) {
-      closeTeamLogin();
-      document.getElementById('teamDashboard').classList.add('active');
-      document.body.style.overflow = 'hidden';
-      const saved = localStorage.getItem('biomas_team_notes');
-      if (saved) document.getElementById('teamNotes').value = saved;
-      loadSheetData();
-    } else {
-      document.getElementById('teamError').style.display = 'block';
-      document.getElementById('teamPassword').value = '';
-      document.getElementById('teamPassword').focus();
-    }
-  }
-
-  function closeTeamDashboard() {
-    document.getElementById('teamDashboard').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  function saveTeamNotes() {
-    const notes = document.getElementById('teamNotes').value;
-    localStorage.setItem('biomas_team_notes', notes);
-    const btn = document.querySelector('.team-notes-save');
-    btn.textContent = 'Saved!';
-    setTimeout(() => { btn.textContent = 'Save notes'; }, 1500);
-  }
-
-  // ── TAB SWITCHER ──
-  function switchTeamTab(tab) {
-    document.querySelectorAll('.team-nav-tab').forEach(x => x.classList.remove('active'));
-    document.querySelectorAll('.team-tab-panel').forEach(p => p.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('tab-' + tab).classList.add('active');
-  }
-
-  // ── TASK DATA ──
-  const SHEET_ID = '1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g';
-  const STATUSES = ['IN PROGRESS','SCHEDULED','ON HOLD','COMPLETED'];
-
-  const BASELINE_TASKS = [
-    {id:1, task:"Marcar reunião com Eduardo (topógrafo)", project:"INTELIGENCIA GEO ESPACIAL", lab:"N/A", who:"LETICIA", sprint:1, status:"COMPLETED", pergunta:"Como acessar dados de propriedades de forma precisa no google earth?", contexto:"Sistema de cartórios não possui dados precisos; muitos terrenos são posse. Possível colaboração para obter dados mais confiáveis", aprendizados:"- sitema de propriedades rurais funciona mediante pagamento de mensalidade - enteder qual o sistema para propriedades privadas", proximos:"- call com João do Mutum - call com Marina do Mutum"},
-    {id:2, task:"Adaptar instrumento de coleta de dados para trabalhadores", project:"DATA COLLECTION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:1, status:"IN PROGRESS", pergunta:"Ajustar perguntas ao contexto de trabalhadores locais", contexto:"Instrumento atual foi pensado para moradores/proprietários", aprendizados:"", proximos:""},
-    {id:3, task:"Criar dois instrumentos separados: domiciliar e bem-estar", project:"DATA COLLECTION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:1, status:"IN PROGRESS", pergunta:"Tornar coleta de dados mais clara e segmentada", contexto:"Estrutura discutida com Natasha durante a reunião", aprendizados:"", proximos:""},
-    {id:4, task:"Reunião com André Peirão", project:"BIOMAS BUSINESS PLAN", lab:"TIJUIPE WATERSHED", who:"LETICIA", sprint:1, status:"COMPLETED", pergunta:"Alinhar trabalho de cuidado das águas da bacia do Tijuípe", contexto:"Explorar colaboração entre iniciativas", aprendizados:"", proximos:""},
-    {id:5, task:"Reunião com Beto (Taboa) para projeto Tijuipe", project:"BIOMAS BUSINESS PLAN", lab:"TIJUIPE WATERSHED", who:"RODRIGO", sprint:1, status:"COMPLETED", pergunta:"Alinhar trabalho de cuidado das águas da bacia do Tijuípe", contexto:"Avaliar se Taboa poderia liderar o processo do Biomas na Bacia do Tijuípe", aprendizados:"Beto acredita que levaria 1 ano para prepararmos a comunidade para o CENSO", proximos:""},
-    {id:6, task:"Avaliar extensão do período de Discovery", project:"BIOMAS BUSINESS PLAN", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:1, status:"IN PROGRESS", pergunta:"Verificar se é necessário mais tempo para estruturar o plano de negócios", contexto:"", aprendizados:"", proximos:""},
-    {id:7, task:"Visita na Comunidade Quilombola Fojo", project:"PARQUE CONDURU - SISTEMAS DE SANEAMENTO", lab:"CONDURU PARK", who:"LETICIA", sprint:1, status:"COMPLETED", pergunta:"Como envolver os moradores da comunidade no projeto para garantir continuidade nas ações de saneamento?", contexto:"Antes de iniciar as ações programadas na comunidade, fomos até a reunião da associação de moradores para explicar o projeto e garantir o consentimento da população.", aprendizados:"Comunidade tradicionais tem um elo mais forte entre os moradores (numa comunidade quilombola, isso é ainda mais verdadeiro pois não existe propriedade privada individual). Fica mais fácil realizar mutirões e espalhar o conhecimento", proximos:"Acompanhar execução das atividades (agendadas para sabado, 21/3)."},
-    {id:8, task:"Call Biomas/ICP", project:"PROJECT IMPLEMENTATION", lab:"N/A", who:"NATASHA, LETICIA, RODRIGO", sprint:1, status:"COMPLETED", pergunta:"É possível levar o sistema do BIOMAS para outros living labs através de parcerias?", contexto:"ICP foi uma organização criada para articular as ações e agentes no território de Paraty/RJ. os fundadores estão desenvolvendo relacionamentos e articulando os agentes há 20 anos", aprendizados:"Faria todo sentido para eles poderem usar o sistema que o Biomas está desenvolvendo", proximos:""},
-    {id:9, task:"Call Biomas/Marina (Relva)", project:"SCIENCE INTEGRATION", lab:"N/A", who:"NATASHA, LETICIA", sprint:1, status:"COMPLETED", pergunta:"Como continuar desenvolvendo o engine do Biomas de forma a integrar o GPT/LEM?", contexto:"Marina é cientista (formação em matemática, mas com aprofundamento em processos ecológicos) e foi a primeira pessoa a entender o que explicamos como tudo ser processo.", aprendizados:"É possivel focar em sistemas. Inspiração no trabalho que eles fizeram com base nas secas da região da amazonia", proximos:"Manter marina atualizada. Marcar uma próxima reunião em 1 mes"},
-    {id:10, task:"Apresentação da plataforma de Inteligencia Territorial de Piracanga para Instituto Somos Água", project:"AGENTS COORDINATION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:1, status:"COMPLETED", pergunta:"Apresentar e testar metodologia de coleta de dados", contexto:"Parte da validação inicial do sistema", aprendizados:"- feedback sobre leitura de alguns gráficos - tirar dados de Água da plataforma para garantir sigilo", proximos:"- validar mapa de prioridades para o território na visão do ISA."},
-    {id:11, task:"Apresentação da plataforma de Inteligencia Territorial de Piracanga para A.mor", project:"AGENTS COORDINATION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:1, status:"COMPLETED", pergunta:"Apresentar e testar metodologia de coleta de dados", contexto:"Parte da validação inicial do sistema", aprendizados:"- projetos que a A.mor pretende executar no ano conversam diretamente com as conclusões dos dados - principal prioridade para A.mor: implementação da Taxa socio ambiental", proximos:"- instituir stewardship program para Santi poder focar nesse projeto"},
-    {id:12, task:"1o workshop da plataforma de Inteligencia Territorial de Piracanga com Proprietários de Piracanga", project:"AGENTS COORDINATION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:1, status:"SCHEDULED", pergunta:"Apresentar e testar metodologia de coleta de dados", contexto:"Parte da validação inicial do sistema", aprendizados:"", proximos:""},
-    {id:13, task:"Desenvolver pitch para Rainforest Trust para aquisição de terras em Piracanga", project:"BIOREGIONAL FINANCING FACILITY", lab:"PIRACANGA WATERSHED", who:"LETICIA, NATASHA", sprint:1, status:"COMPLETED", pergunta:"Existe interesse da Rainforest Trust em direcionar verbas para aquisição de terras em Piracanga?", contexto:"Uma das causas raiz para o desafio de desconexão de propriedade e residencia em piracanga é a propriedade privada, por isso a ideia de um trust para proteger a terra ancorado na gestão da A.mor parece ser bem interessante", aprendizados:"- outros lugares no mundo que operaram nesse modelo incluem Christiania (Dinamarca), Auroville (Índia)", proximos:"Follow up com Natasha"},
-    {id:14, task:"Fazer reunião com coletivo Mutum (João e/ou Marina)", project:"INTELIGENCIA GEO ESPACIAL", lab:"SERRA GRANDE", who:"LETICIA", sprint:2, status:"SCHEDULED", pergunta:"- Como acessar dados de propriedades URBANAS de forma precisa no google earth? - como fazer com que população use os dados? - quais foram os principais aprendizados das oficinas realizadas em SG?", contexto:"- sitema de propriedades rurais funciona mediante pagamento de mensalidade - enteder qual o sistema para propriedades privadas", aprendizados:"", proximos:""},
-    {id:15, task:"Testar preenchimento online dos questionários com trabalhadores de Piracanga", project:"DATA COLLECTION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:2, status:"ON HOLD", pergunta:"Verificar se trabalhadores conseguem preencher os formulários e identificar dificuldades", contexto:"Parte do piloto do instrumento de coleta de dados", aprendizados:"", proximos:""},
-    {id:16, task:"Acompanhar inicio das atividades de saneamento no fojo", project:"PARQUE CONDURU - SISTEMAS DE SANEAMENTO", lab:"CONDURU PARK", who:"LETICIA", sprint:2, status:"IN PROGRESS", pergunta:"Como envolver os moradores da comunidade no projeto para garantir continuidade nas ações de saneamento?", contexto:"Após apresentação e aprovação o inicio do projeto na assembleia da associação de moradores, um primeiro mutirão foi agendado para sábado, dia 21/3 no Fojo", aprendizados:"", proximos:""},
-    {id:17, task:"Follow up com Rainforest Trust", project:"BIOREGIONAL FINANCING FACILITY", lab:"PIRACANGA WATERSHED", who:"NATASHA", sprint:2, status:"SCHEDULED", pergunta:"Existe interesse da Rainforest Trust em direcionar verbas para aquisição de terras em Piracanga?", contexto:"", aprendizados:"", proximos:""},
-    {id:18, task:"Selecionar 1 projeto em Piracanga após os workshops para testar hipótese do Biomas", project:"PROJECT IMPLEMENTATION", lab:"PIRACANGA ECOVILLAGE", who:"LETICIA", sprint:2, status:"ON HOLD", pergunta:"", contexto:"", aprendizados:"", proximos:""},
-    {id:19, task:"Desenvolver plano de negócios / plano do primeiro ano", project:"BIOMAS BUSINESS PLAN", lab:"GLOBAL", who:"LETICIA", sprint:3, status:"ON HOLD", pergunta:"Estruturar estratégia e viabilidade do projeto", contexto:"Necessário para tangibilizar modelo e atrair parceiros", aprendizados:"", proximos:""},
-    {id:20, task:"Conversar com potenciais empreendedores para liderar produto tecnológico", project:"BIOMAS BUSINESS PLAN", lab:"GLOBAL", who:"NATASHA", sprint:3, status:"IN PROGRESS", pergunta:"Encontrar liderança para desenvolvimento da ferramenta de IA do Biomas", contexto:"Contatos citados: Karen, Marcelo Miller", aprendizados:"", proximos:""},
-    {id:21, task:"Marcar call de atualização com Marina (relva)", project:"SCIENCE INTEGRATION", lab:"N/A", who:"NATASHA, LETICIA", sprint:4, status:"ON HOLD", pergunta:"Quais foram os desenvolvimentos recentes do Relva? Como podemos integrar o que estão fazendo com o Biomas?", contexto:"", aprendizados:"", proximos:""}
-  ];
-
-  let allTasks = [];
-  let currentView = 'kanban';
-  let currentSprint = 'ALL';
-  let nextId = 100;
-
-  function loadTasks() {
-    const saved = localStorage.getItem('biomas_tasks_v2');
-    if (saved) {
-      try {
-        allTasks = JSON.parse(saved);
-        nextId = Math.max(...allTasks.map(x => x.id || 0), 99) + 1;
-      } catch(e) {
-        allTasks = JSON.parse(JSON.stringify(BASELINE_TASKS));
-      }
-    } else {
-      allTasks = JSON.parse(JSON.stringify(BASELINE_TASKS));
-    }
-  }
-
-  function saveTasks() {
-    localStorage.setItem('biomas_tasks_v2', JSON.stringify(allTasks));
-    localStorage.setItem('biomas_tasks_updated', new Date().toISOString());
-  }
-
-  function resetToBaseline() {
-    if (confirm(t('confirmReset'))) {
-      localStorage.removeItem('biomas_tasks_v2');
-      loadTasks();
-      renderAll();
-    }
-  }
-
-  function loadSheetData() {
-    loadTasks();
-    renderAll();
-    document.getElementById('tasksLoading').style.display = 'none';
-    document.getElementById('tasksContent').style.display = 'block';
-  }
-
-  // ── HELPERS ──
-  function norm(s) { return (s || '').toString().trim().toUpperCase(); }
-  function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
-  function getStatusClass(s) {
-    const n = norm(s);
-    if (n === 'COMPLETED') return 'status-completed';
-    if (n === 'IN PROGRESS') return 'status-in-progress';
-    if (n === 'SCHEDULED') return 'status-scheduled';
-    if (n === 'ON HOLD') return 'status-on-hold';
-    return '';
-  }
-
-  function getFiltered() {
-    let f = allTasks;
-    if (currentSprint !== 'ALL') f = f.filter(x => String(x.sprint) === String(currentSprint));
-    return f;
-  }
-
-  // ── RENDER ──
-  function renderAll() {
-    renderSprintTabs();
-    renderSprintStats();
-    renderStats();
-    renderTasks();
-  }
-
-  function renderSprintTabs() {
-    const sprints = [...new Set(allTasks.map(x => x.sprint))].sort((a,b) => Number(a) - Number(b));
-    let html = '<button class="sprint-tab' + (currentSprint === 'ALL' ? ' active' : '') + '" onclick="filterSprint(\'ALL\')">' + t('all') + '</button>';
-    sprints.forEach(s => {
-      const cnt = allTasks.filter(x => String(x.sprint) === String(s)).length;
-      html += '<button class="sprint-tab' + (String(currentSprint) === String(s) ? ' active' : '') + '" onclick="filterSprint(\'' + s + '\')">Sprint ' + s + ' <span style="opacity:.4;font-size:9px;margin-left:4px;">(' + cnt + ')</span></button>';
-    });
-    document.getElementById('sprintTabs').innerHTML = html;
-  }
-
-  function renderSprintStats() {
-    const sprints = [...new Set(allTasks.map(x => x.sprint))].sort((a,b) => Number(a) - Number(b));
-    let html = '';
-    sprints.forEach(s => {
-      const st = allTasks.filter(x => String(x.sprint) === String(s));
-      const done = st.filter(x => norm(x.status) === 'COMPLETED').length;
-      const prog = st.filter(x => norm(x.status) === 'IN PROGRESS').length;
-      const sched = st.filter(x => norm(x.status) === 'SCHEDULED').length;
-      const hold = st.filter(x => norm(x.status) === 'ON HOLD').length;
-      const pct = st.length ? Math.round((done / st.length) * 100) : 0;
-      const isActive = String(currentSprint) === String(s);
-      html += '<div class="sprint-stat-chip' + (isActive ? ' active' : '') + '" onclick="filterSprint(\'' + s + '\')" style="cursor:pointer;' + (isActive ? 'border-color:var(--green);background:rgba(5,171,133,0.1);' : '') + '">';
-      html += '<strong style="color:var(--cream);font-size:11px;">S' + s + '</strong>';
-      html += '<span style="color:var(--green);font-size:10px;" title="Completed">' + done + '</span>';
-      html += '<span style="color:var(--gold);font-size:10px;" title="In Progress">' + prog + '</span>';
-      html += '<span style="color:var(--sky);font-size:10px;" title="Scheduled">' + sched + '</span>';
-      html += '<span style="color:#d4546a;font-size:10px;" title="On Hold">' + hold + '</span>';
-      html += '<span style="font-size:9px;color:rgba(255,255,255,0.3);">' + pct + '%</span>';
-      html += '</div>';
-    });
-    document.getElementById('sprintStats').innerHTML = html;
-  }
-
-  function renderStats() {
-    const filtered = getFiltered();
-    const total = filtered.length;
-    const completed = filtered.filter(x => norm(x.status) === 'COMPLETED').length;
-    const inProgress = filtered.filter(x => norm(x.status) === 'IN PROGRESS').length;
-    const scheduled = filtered.filter(x => norm(x.status) === 'SCHEDULED').length;
-    const onHold = filtered.filter(x => norm(x.status) === 'ON HOLD').length;
-    const pct = total ? Math.round((completed / total) * 100) : 0;
-    const updated = localStorage.getItem('biomas_tasks_updated');
-    const locale = currentLang === 'en' ? 'en-US' : 'pt-BR';
-    const updStr = updated ? new Date(updated).toLocaleString(locale) : t('initialData');
-    const sprintLabel = currentSprint === 'ALL' ? t('allSprints') : 'Sprint ' + currentSprint;
-
-    document.getElementById('statsBar').innerHTML =
-      '<div class="stat-item"><div class="stat-number">' + total + '</div><div class="stat-label">' + sprintLabel + '</div></div>' +
-      '<div class="stat-item"><div class="stat-number" style="color:var(--green)">' + completed + '</div><div class="stat-label">' + t('completed') + '</div></div>' +
-      '<div class="stat-item"><div class="stat-number" style="color:var(--gold)">' + inProgress + '</div><div class="stat-label">' + t('inProgress') + '</div></div>' +
-      '<div class="stat-item"><div class="stat-number" style="color:var(--sky)">' + scheduled + '</div><div class="stat-label">' + t('scheduled') + '</div></div>' +
-      '<div class="stat-item"><div class="stat-number" style="color:#d4546a">' + onHold + '</div><div class="stat-label">' + t('onHold') + '</div></div>' +
-      '<div class="stat-item"><div class="stat-number">' + pct + '%</div><div class="stat-label">' + t('progress') + '</div></div>' +
-      '<div class="stat-item" style="margin-left:auto;text-align:right;"><div class="stat-label">' + t('updatedAt') + '</div><div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;">' + updStr + '</div></div>';
-    document.getElementById('progressBar').style.width = pct + '%';
-  }
-
-  // ── TASK CARD HTML (reused by kanban and grouped views) ──
-  function taskCardHtml(tk, opts) {
-    opts = opts || {};
-    const sc = getStatusClass(tk.status);
-    let html = '<div class="task-card" id="task-' + tk.id + '" onclick="toggleCard(this)">';
-    html += '<div class="task-card-header">';
-    html += '<div class="task-card-title">' + escHtml(tk.task) + '</div>';
-    html += '<div class="task-card-meta">';
-    if (!opts.hidePerson) html += '<span class="task-tag tag-person">' + escHtml(tk.who || '\u2014') + '</span>';
-    if (!opts.hideProject) html += '<span class="task-tag tag-project">' + escHtml(tk.project || '\u2014') + '</span>';
-    html += '<span class="task-tag tag-sprint">S' + escHtml(String(tk.sprint || '?')) + '</span>';
-    if (tk.lab && tk.lab !== 'N/A') html += '<span class="task-tag tag-lab">' + escHtml(tk.lab) + '</span>';
-    html += '<select class="status-badge ' + sc + '" onchange="changeStatus(' + tk.id + ', this.value); event.stopPropagation();" onclick="event.stopPropagation();">';
-    STATUSES.forEach(s => {
-      html += '<option value="' + s + '"' + (norm(tk.status) === s ? ' selected' : '') + '>' + s + '</option>';
-    });
-    html += '</select>';
-    html += '</div></div>';
-    html += '<div class="task-card-detail">';
-    if (tk.pergunta) html += '<div class="task-detail-row"><div class="task-detail-label">' + t('question') + '</div><div class="task-detail-value">' + escHtml(tk.pergunta) + '</div></div>';
-    if (tk.contexto) html += '<div class="task-detail-row"><div class="task-detail-label">' + t('context') + '</div><div class="task-detail-value">' + escHtml(tk.contexto) + '</div></div>';
-    if (tk.aprendizados) html += '<div class="task-detail-row"><div class="task-detail-label">' + t('learnings') + '</div><div class="task-detail-value">' + escHtml(tk.aprendizados) + '</div></div>';
-    if (tk.proximos) html += '<div class="task-detail-row"><div class="task-detail-label">' + t('nextSteps') + '</div><div class="task-detail-value">' + escHtml(tk.proximos) + '</div></div>';
-    html += '<div style="margin-top:12px;text-align:right;"><button onclick="deleteTask(' + tk.id + '); event.stopPropagation();" style="font-size:10px;color:#d4546a;background:none;border:1px solid rgba(212,84,106,0.2);padding:4px 12px;border-radius:4px;cursor:pointer;font-family:var(--font);letter-spacing:0.5px;">' + t('removeTask') + '</button></div>';
-    html += '</div></div>';
-    return html;
-  }
-
-  // ── KANBAN ──
-  function renderKanban(filtered) {
-    const cols = [
-      { key: 'IN PROGRESS', label: 'In Progress', cls: 'kh-progress' },
-      { key: 'SCHEDULED', label: 'Scheduled', cls: 'kh-scheduled' },
-      { key: 'ON HOLD', label: 'On Hold', cls: 'kh-hold' },
-      { key: 'COMPLETED', label: 'Completed', cls: 'kh-done' }
-    ];
-    let html = '<div class="kanban-board">';
-    cols.forEach(col => {
-      const tasks = filtered.filter(tk => norm(tk.status) === col.key);
-      html += '<div class="kanban-column">';
-      html += '<div class="kanban-col-header ' + col.cls + '">' + col.label + ' (' + tasks.length + ')</div>';
-      tasks.forEach(tk => {
-        html += '<div class="kanban-card" onclick="toggleCard(this)">';
-        html += '<div style="font-size:12px;font-weight:600;color:var(--cream);margin-bottom:6px;line-height:1.4;">' + escHtml(tk.task) + '</div>';
-        html += '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;">';
-        html += '<span class="task-tag tag-person" style="font-size:9px;padding:2px 6px;">' + escHtml(tk.who || '\u2014') + '</span>';
-        html += '<span class="task-tag tag-project" style="font-size:9px;padding:2px 6px;">' + escHtml(tk.project || '\u2014') + '</span>';
-        html += '<span class="task-tag tag-sprint" style="font-size:9px;padding:2px 6px;">S' + (tk.sprint || '?') + '</span>';
-        html += '</div>';
-        html += '<div class="task-card-detail">';
-        if (tk.pergunta) html += '<div class="task-detail-row"><div class="task-detail-label">' + t('question') + '</div><div class="task-detail-value">' + escHtml(tk.pergunta) + '</div></div>';
-        if (tk.contexto) html += '<div class="task-detail-row"><div class="task-detail-label">' + t('context') + '</div><div class="task-detail-value">' + escHtml(tk.contexto) + '</div></div>';
-        html += '<select class="status-badge ' + getStatusClass(tk.status) + '" style="margin-top:8px;width:100%;" onchange="changeStatus(' + tk.id + ', this.value); event.stopPropagation();" onclick="event.stopPropagation();">';
-        STATUSES.forEach(s => {
-          html += '<option value="' + s + '"' + (norm(tk.status) === s ? ' selected' : '') + '>' + s + '</option>';
-        });
-        html += '</select>';
-        html += '<div style="margin-top:8px;text-align:right;"><button onclick="deleteTask(' + tk.id + '); event.stopPropagation();" style="font-size:9px;color:#d4546a;background:none;border:1px solid rgba(212,84,106,0.2);padding:3px 8px;border-radius:4px;cursor:pointer;font-family:var(--font);">' + t('remove') + '</button></div>';
-        html += '</div></div>';
-      });
-      html += '</div>';
-    });
-    html += '</div>';
-    return html;
-  }
-
-  // ── GROUPED VIEW (projects / person / list) ──
-  function renderGrouped(filtered) {
-    let groups = {};
-    if (currentView === 'projects') {
-      filtered.forEach(tk => { const k = tk.project || t('noProject'); if (!groups[k]) groups[k] = []; groups[k].push(tk); });
-    } else if (currentView === 'person') {
-      filtered.forEach(tk => {
-        (tk.who || t('unassigned')).split(',').map(p => p.trim()).forEach(person => {
-          if (!groups[person]) groups[person] = []; groups[person].push(tk);
-        });
-      });
-    } else {
-      groups[t('allTasks')] = filtered;
-    }
-
-    let html = '';
-    for (const [group, tasks] of Object.entries(groups)) {
-      html += '<div class="sprint-section">';
-      html += '<div class="sprint-section-title">' + escHtml(group) + ' <span style="opacity:.4;font-size:10px;">(' + tasks.length + ')</span></div>';
-      html += '<div class="task-cards">';
-      tasks.forEach(tk => {
-        html += taskCardHtml(tk, {
-          hidePerson: currentView === 'person',
-          hideProject: currentView === 'projects'
-        });
-      });
-      html += '</div></div>';
-    }
-    return html;
-  }
-
-  function renderTasks() {
-    const filtered = getFiltered();
-    const container = document.getElementById('tasksContainer');
-    let html = '';
-
-    if (currentView === 'kanban') {
-      html = renderKanban(filtered);
-    } else {
-      html = renderGrouped(filtered);
-    }
-
-    if (!html || (currentView !== 'kanban' && filtered.length === 0)) {
-      html = '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.3);font-size:13px;">' + t('noTasks') + '</div>';
-    }
-    container.innerHTML = html;
-  }
-
-  function toggleCard(el) { el.classList.toggle('expanded'); }
-
-  function changeStatus(id, newStatus) {
-    const tk = allTasks.find(x => x.id === id);
-    if (tk) { tk.status = newStatus; saveTasks(); renderAll(); }
-  }
-
-  function deleteTask(id) {
-    if (!confirm(t('confirmDelete'))) return;
-    allTasks = allTasks.filter(x => x.id !== id);
-    saveTasks();
-    renderAll();
-  }
-
-  // ── ADD TASK ──
-  function showAddTask() {
-    document.getElementById('addTaskModal').classList.add('active');
-  }
-  function hideAddTask() {
-    document.getElementById('addTaskModal').classList.remove('active');
-  }
-  function addTask() {
-    const task = document.getElementById('newTaskName').value.trim();
-    if (!task) { alert(t('taskRequired')); return; }
-    const obj = {
-      id: nextId++,
-      task: task,
-      project: document.getElementById('newTaskProject').value.trim() || 'NOVO PROJETO',
-      lab: document.getElementById('newTaskLab').value.trim() || 'N/A',
-      who: document.getElementById('newTaskWho').value.trim() || 'LETICIA',
-      sprint: parseInt(document.getElementById('newTaskSprint').value) || 1,
-      status: document.getElementById('newTaskStatus').value || 'IN PROGRESS',
-      pergunta: document.getElementById('newTaskPergunta').value.trim(),
-      contexto: document.getElementById('newTaskContexto').value.trim(),
-      aprendizados: '',
-      proximos: ''
-    };
-    allTasks.push(obj);
-    saveTasks();
-    renderAll();
-    hideAddTask();
-    ['newTaskName','newTaskProject','newTaskLab','newTaskWho','newTaskPergunta','newTaskContexto'].forEach(id => document.getElementById(id).value = '');
-  }
-
-  function switchView(view) {
-    currentView = view;
-    document.querySelectorAll('#viewSwitcher .sprint-filter-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    renderTasks();
-  }
-
-  function filterSprint(sprint) {
-    currentSprint = sprint;
-    renderAll();
-  }
-
-  // ── i18n ──
-  let currentLang = 'en';
-
-  const i18n = {
-    pt: {
-      all: 'Todos', allSprints: 'Todos os sprints', completed: 'Concluidas', inProgress: 'Em progresso',
-      scheduled: 'Agendadas', onHold: 'Em espera', progress: 'Progresso', updatedAt: 'Atualizado em',
-      initialData: 'dados iniciais', byProject: 'Por Projeto', byPerson: 'Por Pessoa', list: 'Lista',
-      addTask: '+ Nova Tarefa', noTasks: 'Nenhuma tarefa encontrada.',
-      noProject: 'Sem projeto', unassigned: 'Nao atribuido', allTasks: 'Todas as tarefas',
-      question: 'Pergunta', context: 'Contexto', learnings: 'Aprendizados', nextSteps: 'Proximos passos',
-      removeTask: 'Remover tarefa', remove: 'Remover', confirmReset: 'Substituir todas as edicoes locais pelos dados originais da planilha?',
-      confirmDelete: 'Remover esta tarefa?', taskRequired: 'Nome da tarefa e obrigatorio',
-      syncing: 'Sincronizando...', syncOk: 'Atualizado com sucesso!', syncFail: 'Erro ao sincronizar. Verifique se a planilha esta publica.',
-      langBtn: 'EN'
-    },
-    en: {
-      all: 'All', allSprints: 'All sprints', completed: 'Completed', inProgress: 'In progress',
-      scheduled: 'Scheduled', onHold: 'On hold', progress: 'Progress', updatedAt: 'Updated at',
-      initialData: 'initial data', byProject: 'By Project', byPerson: 'By Person', list: 'List',
-      addTask: '+ New Task', noTasks: 'No tasks found.',
-      noProject: 'No project', unassigned: 'Unassigned', allTasks: 'All tasks',
-      question: 'Question', context: 'Context', learnings: 'Learnings', nextSteps: 'Next steps',
-      removeTask: 'Remove task', remove: 'Remove', confirmReset: 'Replace all local edits with original spreadsheet data?',
-      confirmDelete: 'Remove this task?', taskRequired: 'Task name is required',
-      syncing: 'Syncing...', syncOk: 'Updated successfully!', syncFail: 'Sync failed. Check if spreadsheet is public.',
-      langBtn: 'PT'
-    }
-  };
-
-  function t(key) { return (i18n[currentLang] || i18n.pt)[key] || key; }
-
-  function toggleLang() {
-    currentLang = currentLang === 'pt' ? 'en' : 'pt';
-    localStorage.setItem('biomas_lang', currentLang);
-    document.getElementById('btnLang').textContent = t('langBtn');
-    document.getElementById('btnAddTask').textContent = t('addTask');
-    // Update view switcher labels
-    var btns = document.querySelectorAll('#viewSwitcher .sprint-filter-btn');
-    var labels = ['Kanban', t('byProject'), t('byPerson'), t('list')];
-    btns.forEach(function(b, i) { if (labels[i]) b.textContent = labels[i]; });
-    renderAll();
-  }
-
-  // ── SYNC FROM SHEETS (in-browser) ──
-  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g/export?format=csv';
-
-  function syncFromSheets() {
-    var btn = document.getElementById('btnSync');
-    var origText = btn.textContent;
-    btn.textContent = t('syncing');
-    btn.disabled = true;
-    btn.style.opacity = '0.5';
-
-    fetch(SHEET_CSV_URL)
-      .then(function(r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.text();
-      })
-      .then(function(csv) {
-        var tasks = parseSheetCSV(csv);
-        if (tasks.length === 0) throw new Error('No tasks parsed');
-        allTasks = tasks;
-        nextId = Math.max.apply(null, allTasks.map(function(t2) { return t2.id || 0; }).concat([99])) + 1;
-        saveTasks();
-        renderAll();
-        btn.textContent = t('syncOk');
-        setTimeout(function() { btn.textContent = origText; btn.disabled = false; btn.style.opacity = '1'; }, 2000);
-      })
-      .catch(function(err) {
-        console.error('Sync error:', err);
-        btn.textContent = t('syncFail');
-        btn.style.color = '#d4546a';
-        setTimeout(function() { btn.textContent = origText; btn.disabled = false; btn.style.opacity = '1'; btn.style.color = 'var(--sky)'; }, 3000);
-      });
-  }
-
-  function parseSheetCSV(csv) {
-    var lines = [];
-    var current = '';
-    var inQuote = false;
-    for (var i = 0; i < csv.length; i++) {
-      var ch = csv[i];
-      if (ch === '"') {
-        if (inQuote && i + 1 < csv.length && csv[i + 1] === '"') {
-          current += '"';
-          i++;
-        } else {
-          inQuote = !inQuote;
-        }
-      } else if ((ch === '\n' || ch === '\r') && !inQuote) {
-        if (current.length > 0) lines.push(current);
-        current = '';
-        if (ch === '\r' && i + 1 < csv.length && csv[i + 1] === '\n') i++;
-      } else {
-        current += ch;
-      }
-    }
-    if (current.length > 0) lines.push(current);
-    if (lines.length < 2) return [];
-
-    function splitRow(line) {
-      var cols = [];
-      var cur = '';
-      var q = false;
-      for (var j = 0; j < line.length; j++) {
-        var c = line[j];
-        if (c === '"') {
-          if (q && j + 1 < line.length && line[j + 1] === '"') { cur += '"'; j++; }
-          else q = !q;
-        } else if (c === ',' && !q) {
-          cols.push(cur); cur = '';
-        } else {
-          cur += c;
-        }
-      }
-      cols.push(cur);
-      return cols;
-    }
-
-    var header = splitRow(lines[0]).map(function(h) { return h.trim().toUpperCase().replace(/[^A-Z0-9 #]/g, '').trim(); });
-    var colMap = {};
-    header.forEach(function(h, idx) {
-      if (h === 'TASK' || h.indexOf('TAREFA') >= 0) colMap.task = idx;
-      else if (h === 'PROJECT' || h.indexOf('PROJETO') >= 0) colMap.project = idx;
-      else if (h.indexOf('LIVING') >= 0 || h.indexOf('LAB') >= 0) colMap.lab = idx;
-      else if (h === 'WHO' || h.indexOf('QUEM') >= 0 || h.indexOf('RESPONSAVEL') >= 0) colMap.who = idx;
-      else if (h.indexOf('SPRINT') >= 0) colMap.sprint = idx;
-      else if (h === 'STATUS') colMap.status = idx;
-      else if (h.indexOf('PERGUNTA') >= 0 || h.indexOf('QUESTION') >= 0) colMap.pergunta = idx;
-      else if (h.indexOf('CONTEXTO') >= 0 || h.indexOf('CONTEXT') >= 0) colMap.contexto = idx;
-      else if (h.indexOf('APRENDIZADO') >= 0 || h.indexOf('LEARNING') >= 0) colMap.aprendizados = idx;
-      else if (h.indexOf('PROXIMO') >= 0 || h.indexOf('NEXT') >= 0) colMap.proximos = idx;
-    });
-
-    var tasks = [];
-    for (var r = 1; r < lines.length; r++) {
-      var row = splitRow(lines[r]);
-      var taskName = (row[colMap.task] || '').trim();
-      if (!taskName) continue;
-      tasks.push({
-        id: r,
-        task: taskName,
-        project: (row[colMap.project] || '').trim() || 'N/A',
-        lab: (row[colMap.lab] || '').trim() || 'N/A',
-        who: (row[colMap.who] || '').trim() || 'N/A',
-        sprint: parseInt(row[colMap.sprint]) || 1,
-        status: (row[colMap.status] || 'SCHEDULED').trim().toUpperCase(),
-        pergunta: (row[colMap.pergunta] || '').trim().replace(/[\r\n\t]+/g, ' '),
-        contexto: (row[colMap.contexto] || '').trim().replace(/[\r\n\t]+/g, ' '),
-        aprendizados: (row[colMap.aprendizados] || '').trim().replace(/[\r\n\t]+/g, ' '),
-        proximos: (row[colMap.proximos] || '').trim().replace(/[\r\n\t]+/g, ' ')
-      });
-    }
-    return tasks;
-  }
-
-  // Apply saved language on load
-  if (currentLang === 'en') {
-    document.getElementById('btnLang').textContent = 'PT';
-    document.getElementById('btnAddTask').textContent = '+ New Task';
-    var btns = document.querySelectorAll('#viewSwitcher .sprint-filter-btn');
-    var labels = ['Kanban', 'By Project', 'By Person', 'List'];
-    btns.forEach(function(b, i) { if (labels[i]) b.textContent = labels[i]; });
-  }
-
-  if (window.location.hash === '#team') openTeamLogin();
-
-// ═══════════════════════════════════════════════
-//  LANDING PAGE i18n
-// ═══════════════════════════════════════════════
-const landingLang = { current: localStorage.getItem('landingLang') || 'en' };
-
-const landingDict = {
-  en: {
-    nav_os: 'The OS', nav_how: 'How it works', nav_why: 'Why different',
-    nav_pilot: 'Pilot', nav_cta: 'Get in touch', nav_team: 'Team',
-    scroll: 'Scroll',
-    hero_h1: 'The coordination OS<br>living systems<br><span class="accent">always needed</span>',
-    hero_sub: 'For four billion years, life on Earth has been solving the hardest coordination problem that exists. BIOMAS brings that same natural intelligence to the people, capital, and knowledge of a living territory.',
-    btn_how: 'How it works', btn_pilot: 'See the pilot',
-    prob_label: 'The problem',
-    prob_h2: 'The money is there.<br>The science is there.<br><em>The coordination isn\'t.</em>',
-    prob_p1: 'Go into any watershed under ecological pressure and you will find the same story. One group is planting trees funded by a European foundation. Another is negotiating a water agreement with farmers. A third is running a carbon credit scheme that has nothing to do with either.',
-    prob_p2: 'Everyone is working hard. Nobody is working together. Capital keeps flowing to what looks good in a grant report rather than to what the landscape actually needs.',
-    prob_p3: 'Not because we lack solutions — but because no one sees the system they belong to.',
-    prob_p4: 'This is a coordination problem. And it has always had a solution.',
-    actor1_name: 'European foundation', actor1_desc: 'Funding tree-planting in the upper watershed',
-    no_data: 'no shared data',
-    actor2_name: 'Local NGO', actor2_desc: 'Negotiating water agreements with farmers',
-    no_coord: 'no coordination',
-    actor3_name: 'Carbon credit scheme', actor3_desc: 'Running independently, unconnected to either',
-    sol_label: 'The solution',
-    sol_h2: 'The operating system that enables bioregions to <span class="accent">think, plan, and evolve</span> like living systems',
-    sol_p: 'BIOMAS doesn\'t implement projects, own land, or deploy capital directly. It builds the shared intelligence infrastructure that makes everything else possible — <strong style="color:rgba(255,255,255,0.85)">Sense. Plan. Act.</strong>',
-    os_label: 'The operating system metaphor',
-    os_quote: 'Think about what an operating system does for a computer.<br>It doesn\'t run the applications — it creates the environment<br>where <strong>all the applications can work together.</strong><br><br>That is what BIOMAS does for a watershed.',
-    ll_title: 'Living Lab<br>Coordination',
-    ll_desc: 'Embedded in the territory — coordinates the OS implementation and feeds continuous improvement into each layer.',
-    ll_fn1_title: 'Deploys the OS', ll_fn1_desc: 'Implements BIOMAS in the field, day to day',
-    ll_fn2_title: 'Ground-truth feedback', ll_fn2_desc: 'Collects what the system can\'t see from above',
-    ll_fn3_title: 'Continuous improvement', ll_fn3_desc: 'Feeds learning back into each layer',
-    ll_fn4_title: 'Actor coordination', ll_fn4_desc: 'Activates and connects agents across layers',
-    ll_flow1: 'Implements into territory', ll_flow2: 'Returns feedback upward', ll_flow3: 'Connects all four layers',
-    l4_title: 'Bioregional Financing Facility', l4_tagline: 'Capital following ecological truth',
-    flow43: 'Coordination surfaces priorities for capital',
-    l3_title: 'Multi-Agent System', l3_tagline: 'Where coordination becomes action',
-    flow32: 'Planning guides collective action',
-    l2_title: 'Bioregional Resource Planning', l2_tagline: 'Turning data into real decisions',
-    flow21: 'Data grounds every decision',
-    l4_num: 'Layer 4', l3_num: 'Layer 3', l2_num: 'Layer 2',
-    l1_num: 'Layer 1 · Foundation', l1_title: 'Bioregional Data Intelligence', l1_tagline: 'The living memory of the watershed',
-    terr_label: 'Pilot territories',
-    leg1_title: 'Layers are interdependent', leg1_text: 'Data grounds planning. Planning guides coordination. Coordination attracts capital.',
-    leg2_title: 'Living Lab Coordinator', leg2_text: 'Embedded in the territory — coordinates OS implementation and feeds continuous improvement into each layer.',
-    leg3_title: 'Shared intelligence', leg3_text: 'All actors see the same reality — coordinating from evidence rather than assumption.',
-    why_label: 'Why this is different',
-    why_h2: 'Built for what the landscape<br>actually needs',
-    why_p: 'Most conservation work arrives in a place with the solution already decided. BIOMAS builds the infrastructure that lets the place surface its own solutions.',
-    why1_label: 'Conservation work', why1_contrast: '<s>Arrives with the solution already decided</s>',
-    why1_point: 'BIOMAS builds infrastructure for local solutions', why1_body: 'Grounded in local knowledge and ecological reality — not donor preference or grant templates.',
-    why2_label: 'Conservation finance', why2_contrast: '<s>Goes to what is already measurable and familiar to funders</s>',
-    why2_point: 'Capital follows ecological truth', why2_body: 'BIOMAS makes the whole living system readable, so capital can follow what the ecosystem needs.',
-    why3_label: 'Multi-stakeholder processes', why3_contrast: '<s>Bring people to a room and hope goodwill is enough</s>',
-    why3_point: 'Shared data layer first', why3_body: 'When people come together, they are already looking at the same evidence — working out what to do about it together.',
-    res_label: 'The result',
-    res_h2: 'A watershed that functions<br>like <span class="accent">the living system it already is</span>',
-    res_p1: 'Where actors coordinate around shared intelligence rather than working in isolation. Where capital flows to what the ecosystem actually needs. Where local people and technology co-steer toward regeneration.',
-    res_p2: 'Because the system makes the right path visible to everyone at once.',
-    out1: 'Rivers run cleaner', out2: 'Soils store more carbon', out3: 'Biodiversity recovers',
-    out4: 'Local livelihoods grow', out5: 'Communities self-govern', out6: 'Capital flows efficiently',
-    pilot_label: 'Current pilot',
-    pilot_h3: 'Atlantic Forest,<br>Bahia, Brazil',
-    pilot_p1: 'BIOMAS is currently being developed in the Atlantic Forest region of Bahia — one of the most biodiverse and ecologically pressured landscapes on Earth.',
-    pilot_p2: 'The pilot territories of Piracanga and Serra Grande serve as living laboratories for the full BIOMAS model, integrating community census data, geospatial intelligence, and the GPTLEM territorial framework.',
-    pilot_btn: 'See the pilot →',
-    fact1: 'Pilot territories', fact2: 'Active working groups', fact3: 'Community census',
-    cta_h2: 'Ready to build the OS<br>for your bioregion?',
-    cta_p: 'BIOMAS is expanding to new territories. If you work with a watershed under pressure, let\'s talk.',
-    cta_btn: 'Get in touch',
-    footer_team: 'team access',
-  },
-  pt: {
-    nav_os: 'O Sistema', nav_how: 'Como funciona', nav_why: 'Por que é diferente',
-    nav_pilot: 'Piloto', nav_cta: 'Falar com a gente', nav_team: 'Time',
-    scroll: 'Rolar',
-    hero_h1: 'O sistema operacional<br>que territórios vivos<br><span class="accent">sempre precisaram</span>',
-    hero_sub: 'Por quatro bilhões de anos, a vida na Terra tem resolvido o problema de coordenação mais difícil que existe. O BIOMAS traz essa mesma inteligência natural para as pessoas, o capital e o conhecimento de um território vivo.',
-    btn_how: 'Como funciona', btn_pilot: 'Ver o piloto',
-    prob_label: 'O problema',
-    prob_h2: 'O dinheiro está lá.<br>A ciência está lá.<br><em>A coordenação não.</em>',
-    prob_p1: 'Entre em qualquer bacia hidrográfica sob pressão ecológica e você vai encontrar a mesma história. Um grupo planta árvores financiado por uma fundação europeia. Outro negocia um acordo de água com agricultores. Um terceiro opera um esquema de crédito de carbono sem nenhuma relação com os outros dois.',
-    prob_p2: 'Todos trabalham muito. Ninguém trabalha junto. O capital continua fluindo para o que parece bom em um relatório de doação, e não para o que o território realmente precisa.',
-    prob_p3: 'Não porque faltam soluções — mas porque ninguém enxerga o sistema do qual faz parte.',
-    prob_p4: 'Este é um problema de coordenação. E ele sempre teve solução.',
-    actor1_name: 'Fundação europeia', actor1_desc: 'Financiando plantio de árvores na parte alta da bacia',
-    no_data: 'sem dados compartilhados',
-    actor2_name: 'ONG local', actor2_desc: 'Negociando acordos de água com agricultores',
-    no_coord: 'sem coordenação',
-    actor3_name: 'Esquema de crédito de carbono', actor3_desc: 'Operando de forma independente, sem conexão com os demais',
-    sol_label: 'A solução',
-    sol_h2: 'O sistema operacional que permite às biorregiões <span class="accent">pensar, planejar e evoluir</span> como sistemas vivos',
-    sol_p: 'O BIOMAS não implementa projetos, não possui terras nem distribui capital diretamente. Ele constrói a infraestrutura de inteligência compartilhada que torna tudo o mais possível — <strong style="color:rgba(255,255,255,0.85)">Sentir. Planejar. Agir.</strong>',
-    os_label: 'A metáfora do sistema operacional',
-    os_quote: 'Pense no que um sistema operacional faz por um computador.<br>Ele não executa os aplicativos — ele cria o ambiente<br>onde <strong>todos os aplicativos podem trabalhar juntos.</strong><br><br>Isso é o que o BIOMAS faz por uma bacia hidrográfica.',
-    ll_title: 'Coordenação do<br>Território Vivo',
-    ll_desc: 'Integrado ao território — coordena a implementação do sistema e alimenta a melhoria contínua em cada camada.',
-    ll_fn1_title: 'Implanta o sistema', ll_fn1_desc: 'Implementa o BIOMAS no campo, dia a dia',
-    ll_fn2_title: 'Feedback de campo', ll_fn2_desc: 'Coleta o que o sistema não consegue ver de cima',
-    ll_fn3_title: 'Melhoria contínua', ll_fn3_desc: 'Retroalimenta o aprendizado em cada camada',
-    ll_fn4_title: 'Coordenação de atores', ll_fn4_desc: 'Ativa e conecta agentes entre as camadas',
-    ll_flow1: 'Implementa no território', ll_flow2: 'Retorna feedback para cima', ll_flow3: 'Conecta as quatro camadas',
-    l4_title: 'Plataforma de Financiamento Bioregional', l4_tagline: 'Capital seguindo a verdade ecológica',
-    flow43: 'A coordenação revela prioridades para o capital',
-    l3_title: 'Sistema Multi-Agente', l3_tagline: 'Onde a coordenação vira ação',
-    flow32: 'O planejamento orienta a ação coletiva',
-    l2_title: 'Planejamento de Recursos Bioregional', l2_tagline: 'Transformando dados em decisões reais',
-    flow21: 'Os dados embasam cada decisão',
-    l4_num: 'Camada 4', l3_num: 'Camada 3', l2_num: 'Camada 2',
-    l1_num: 'Camada 1 · Base', l1_title: 'Inteligência de Dados Bioregional', l1_tagline: 'A memória viva da bacia hidrográfica',
-    terr_label: 'Territórios piloto',
-    leg1_title: 'As camadas são interdependentes', leg1_text: 'Os dados fundamentam o planejamento. O planejamento orienta a coordenação. A coordenação atrai capital.',
-    leg2_title: 'Coordenação de Territórios Vivos', leg2_text: 'Integrado ao território — coordena a implementação do sistema e alimenta a melhoria contínua em cada camada.',
-    leg3_title: 'Inteligência compartilhada', leg3_text: 'Todos os atores enxergam a mesma realidade — coordenando a partir de evidências, não de suposições.',
-    why_label: 'Por que é diferente',
-    why_h2: 'Construído para o que o território<br>realmente precisa',
-    why_p: 'A maioria dos trabalhos de conservação chega a um lugar com a solução já decidida. O BIOMAS constrói a infraestrutura que permite ao território encontrar suas próprias soluções.',
-    why1_label: 'Trabalho de conservação', why1_contrast: '<s>Chega com a solução já decidida</s>',
-    why1_point: 'BIOMAS constrói infraestrutura para soluções locais', why1_body: 'Fundamentado no conhecimento local e na realidade ecológica — não na preferência de doadores ou em modelos de projetos.',
-    why2_label: 'Finanças para conservação', why2_contrast: '<s>Vai para o que é mensurável e familiar para os financiadores</s>',
-    why2_point: 'Capital segue a verdade ecológica', why2_body: 'O BIOMAS torna todo o sistema vivo legível, para que o capital possa seguir o que o ecossistema realmente precisa.',
-    why3_label: 'Processos multiparticipantes', why3_contrast: '<s>Reúnem pessoas numa sala e torcem para que a boa vontade seja suficiente</s>',
-    why3_point: 'Camada de dados compartilhados primeiro', why3_body: 'Quando as pessoas se reúnem, já estão olhando para as mesmas evidências — e trabalhando juntas para decidir o que fazer com elas.',
-    res_label: 'O resultado',
-    res_h2: 'Uma bacia que funciona<br>como <span class="accent">o sistema vivo que já é</span>',
-    res_p1: 'Onde os atores coordenam em torno de inteligência compartilhada em vez de trabalhar isolados. Onde o capital flui para o que o ecossistema realmente precisa. Onde pessoas locais e tecnologia co-dirigem em direção à regeneração.',
-    res_p2: 'Porque o sistema torna o caminho certo visível para todos ao mesmo tempo.',
-    out1: 'Rios mais limpos', out2: 'Solos armazenam mais carbono', out3: 'Biodiversidade se recupera',
-    out4: 'Meios de vida locais crescem', out5: 'Comunidades se auto-governam', out6: 'Capital flui com eficiência',
-    pilot_label: 'Piloto atual',
-    pilot_h3: 'Mata Atlântica,<br>Bahia, Brasil',
-    pilot_p1: 'O BIOMAS está sendo desenvolvido na região da Mata Atlântica da Bahia — uma das paisagens mais biodiversas e ecologicamente pressionadas do planeta.',
-    pilot_p2: 'Os territórios piloto de Piracanga e Serra Grande funcionam como laboratórios vivos para o modelo completo do BIOMAS, integrando dados de censo comunitário, inteligência geoespacial e o framework territorial GPTLEM.',
-    pilot_btn: 'Ver o piloto →',
-    fact1: 'Territórios piloto', fact2: 'Grupos de trabalho ativos', fact3: 'Censo comunitário',
-    cta_h2: 'Pronto para construir o sistema operacional<br>da sua biorregião?',
-    cta_p: 'O BIOMAS está se expandindo para novos territórios. Se você trabalha com uma bacia hidrográfica sob pressão, vamos conversar.',
-    cta_btn: 'Falar com a gente',
-    footer_team: 'acesso do time',
-  }
-};
-
-function applyLandingLang() {
-  const d = landingDict[landingLang.current];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (d[key] !== undefined) el.textContent = d[key];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const key = el.getAttribute('data-i18n-html');
-    if (d[key] !== undefined) el.innerHTML = d[key];
-  });
-  const btn = document.getElementById('btnLandingLang');
-  if (btn) btn.textContent = landingLang.current === 'en' ? 'PT' : 'EN';
-  document.documentElement.lang = landingLang.current === 'pt' ? 'pt-BR' : 'en';
-}
-
-function toggleLandingLang() {
-  landingLang.current = landingLang.current === 'en' ? 'pt' : 'en';
-  localStorage.setItem('landingLang', landingLang.current);
-  applyLandingLang();
-}
-
-// Apply on load
-document.addEventListener('DOMContentLoaded', applyLandingLang);
-</script>
 </body>
 </html>

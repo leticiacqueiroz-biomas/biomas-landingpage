@@ -618,147 +618,11 @@ body {
 //  DATA
 // ═══════════════════════════════════════
 const SK = 'biomas_y1_v2';
+// ─── Bump SEED_VERSION whenever you upload updated data to GitHub ───
+// Everyone who opens the page will get the new data on their next visit.
+const SEED_VERSION = '20260318_001';
 
-const DEFAULTS = [
-  {
-    id: 'ops', light: 'yellow',
-    title: 'Operations Start\n& Legal Structure',
-    designedActions: [
-      'SLA with Rodrigo for affiliate office (to hire and run local operation) and Natasha for headquarters',
-      'Define Legal Structure (US and Brazil)',
-      'Select local law firm to register operation',
-      'Set up entity to start operation as an NGO',
-    ],
-    outcome: 'Have EIN for Global Headquarter and CNPJ for local affiliate office in order to receive income from funders who want to make a tax-free donation.',
-    statusNote: 'Moving a little slower than predicted due to US government policies.',
-    projects: [
-      { id:'ops-1', name:'WTS Germany for Foundation Set Up', desc:'', docs:[] },
-      { id:'ops-2', name:'Brazilian Lawyers — name registration', desc:'', docs:[] },
-      { id:'ops-3', name:'Brazilian Lawyers — legal entity', desc:'', docs:[] },
-      { id:'ops-4', name:'Operations Management on Notion', desc:'', docs:[] },
-    ]
-  },
-  {
-    id: 'dash', light: 'yellow',
-    title: 'Bio/Mas Dashboard',
-    designedActions: [
-      'Search for Bioregional Systemic Impact Dashboards',
-      'Search for specific dashboards for Environmental, Social & Economic',
-      'Analyse pros and cons between every option',
-      'Make a preliminary list of KPIs for the triple bottom line',
-      'Partner with entities that can provide IP from their previous work',
-      'Check out available data (Public and Private/Agents)',
-      'Check out quality and accessibility of available data',
-      'Define who will own the data and where data will reside',
-      'Build MVP of Bioregional Dashboard',
-    ],
-    outcome: 'Have an MVP of a bioregional dashboard that evaluates triple bottom line. Framework should be replicable for all future bioregions.',
-    statusNote: 'Decided to pilot in a Biohub (Piracanga). Working on a bioregional dashboard for Piracanga to later design for the bioregion model.',
-    projects: [
-      { id:'dash-1', name:'Water project with Instituto Somos Agua', desc:'', docs:[] },
-      { id:'dash-2', name:'Noronha — GNH Project', desc:'', docs:[] },
-      { id:'dash-3', name:'Learning Journey — Dashboard', desc:'', docs:[] },
-      { id:'dash-4', name:'Learning Journey — Landscape', desc:'', docs:[] },
-      { id:'dash-5', name:'Learning Journey — Wellbeing', desc:'', docs:[] },
-      { id:'dash-6', name:'Research Library (Zotero)', desc:'', docs:[] },
-      { id:'dash-7', name:'Observatorio Social & Bioverse Proposals', desc:'', docs:[] },
-    ]
-  },
-  {
-    id: 'comm', light: 'green',
-    title: 'Community (Agent)\nEngagement',
-    designedActions: [
-      'Design Biomas Pitch Deck for Agents',
-      'Design Agents Mapping Process',
-      'Design Website and Marketing Materials',
-      'Design MAS Two Level Program Involvement w/ SLA',
-      'Agents Acceleration Program',
-      'Agents Centralized Database',
-      'Facilitate workshops to reach shared understanding of mission',
-      'Create a manual on agent mapping and agent organizing for new bioregions',
-    ],
-    outcome: 'Have a sample of 5 agents (minimum) engaged and working together towards a "Small Better World". Have process mapped out so it can be implemented in new bioregions.',
-    statusNote: 'Conducted a couple of tests and validated 1 case study so far.',
-    projects: [
-      { id:'com-1', name:'Construction of our narrative', desc:'', docs:[] },
-      { id:'com-2', name:'Piracanga pilot launch', desc:'', docs:[] },
-      { id:'com-3', name:'Conduru Park MAS project', desc:'', docs:[] },
-      { id:'com-4', name:'Love of Place Workshop', desc:'', docs:[] },
-      { id:'com-5', name:'CRM Design on Airtable', desc:'', docs:[] },
-      { id:'com-6', name:'Noronha — GNH Project', desc:'', docs:[] },
-      { id:'com-7', name:'Agents mapping questionnaire', desc:'', docs:[] },
-    ]
-  },
-  {
-    id: 'data', light: 'green',
-    title: 'Data Collection',
-    designedActions: [
-      'Primary Data Collection',
-      'Secondary Data Collection',
-      'Agents Meeting',
-      'Gap analysis and opportunities',
-      'Designing a MAS — Explore Gen AI Tools already available',
-    ],
-    outcome: 'Have at least one test of how collection of 3 types of data (environmental, economical, and social) leads to better decision making.',
-    statusNote: 'Will conduct test in Biohub (Piracanga) once we have the MVP of the dashboard.',
-    projects: [
-      { id:'dat-1', name:'Master Plan for Serra Grande', desc:'', docs:[] },
-      { id:'dat-2', name:'Plan for APA Serra Grande / Itacaré', desc:'', docs:[] },
-      { id:'dat-3', name:'Water project with Instituto Somos Agua', desc:'', docs:[] },
-      { id:'dat-4', name:'Noronha — GNH Project', desc:'', docs:[] },
-    ]
-  },
-  {
-    id: 'bio', light: 'red',
-    title: 'BioLab Design',
-    designedActions: [
-      'Design BioLab Network Proposal (mentors / access to market)',
-      'Design BioLab Programs (Agents Acceleration Program / Projects Investment Program)',
-      'Call for projects and solutions',
-      'Design Search and Selection Process',
-      'Define and Build Investment Committee',
-      'Design Selection Criteria Process (60 / 20 / 20)',
-    ],
-    outcome: 'Have a program well defined on how to launch and fund projects.',
-    statusNote: '',
-    projects: [
-      { id:'bio-1', name:'LJ: The Human Project', desc:'', docs:[] },
-      { id:'bio-2', name:'Mentoring Program: Bioinsumes Startup', desc:'', docs:[] },
-    ]
-  },
-  {
-    id: 'y2', light: 'yellow',
-    title: 'Beginning of Year 2:\n(Projects may appear.)',
-    designedActions: [
-      'Run Search Programs (open calls or by nomination)',
-      'Run Selection Process',
-      'Define Projects to be invested / incubated / accelerated',
-      'Raise other sources of capital',
-    ],
-    outcome: 'Have at least one project ready to be funded with co-investors by beginning of year two.',
-    statusNote: 'Potential projects analyzed and being monitored.',
-    projects: [
-      { id:'y2-1', name:'Bioinsumes in Serra Grande', desc:'', docs:[] },
-      { id:'y2-2', name:'Tapiocas in Serra Grande', desc:'', docs:[] },
-      { id:'y2-3', name:'Educational Experiences in Piracanga', desc:'', docs:[] },
-      { id:'y2-4', name:'Recycling Project', desc:'', docs:[] },
-    ]
-  },
-  {
-    id: 'growth', light: 'yellow',
-    title: 'Growth Proposal',
-    designedActions: [
-      'Develop and deliver annual report for shareholders',
-      'Develop financial projection and budget for 5-year project',
-    ],
-    outcome: 'Business plan for BioMas Global for the upcoming 5 years.',
-    statusNote: 'In progress.',
-    projects: [
-      { id:'gro-1', name:'Annual report for shareholders', desc:'', docs:[] },
-      { id:'gro-2', name:'5-year financial projection & budget', desc:'', docs:[] },
-    ]
-  },
-];
+const DEFAULTS = JSON.parse('[{"id":"ops","light":"yellow","title":"Operations Start\n& Legal Structure","designedActions":["SLA with Rodrigo for affiliate office (to hire and run local operation) and Natasha for headquarters","Define Legal Structure (US and Brazil)","Select local law firm to register operation","Set up entity to start operation as an NGO"],"outcome":"Have EIN for Global Headquarter and CNPJ for local affiliate office in order to receive income from funders who want to make a tax-free donation.","statusNote":"Moving a little slower than predicted due to US government policies.","projects":[{"id":"ops-1","name":"WTS Germany for Foundation Set Up","desc":"","docs":[],"status":"done"},{"id":"ops-2","name":"Brazilian Lawyers \u2014 name registration","desc":"","docs":[],"status":"paused"},{"id":"ops-3","name":"Brazilian Lawyers \u2014 legal entity","desc":"","docs":[],"status":"paused"},{"id":"ops-4","name":"Operations Management on Notion","desc":"","docs":[],"status":"done"}]},{"id":"dash","light":"green","title":"Bio/Mas Dashboard","designedActions":["Search for Bioregional Systemic Impact Dashboards","Search for specific dashboards for Environmental, Social & Economic","Analyse pros and cons between every option","Make a preliminary list of KPIs for the triple bottom line","Partner with entities that can provide IP from their previous work","Check out available data (Public and Private/Agents)","Check out quality and accessibility of available data","Define who will own the data and where data will reside","Build MVP of Bioregional Dashboard"],"outcome":"Have an MVP of a bioregional dashboard that evaluates triple bottom line. Framework should be replicable for all future bioregions.","statusNote":"Piracanga live dashboard is ready and available for citizens and agents. We are still in the feedback phase.","projects":[{"id":"dash-1","name":"Water project with Instituto Somos Agua","desc":"Worked along Instituto Somos Agua and created a portal consolidating historic information the organization has.","docs":[{"name":"Instituto Somos Agua portal","url":"https://leticiacqueiroz-biomas.github.io/somos-agua/"}],"status":"done"},{"id":"dash-2","name":"Noronha \u2014 GNH Project","desc":"","docs":[],"status":"done"},{"id":"dash-3","name":"Learning Journey \u2014 Dashboard","desc":"","docs":[],"status":"done"},{"id":"dash-4","name":"Learning Journey \u2014 Landscape","desc":"","docs":[],"status":"paused"},{"id":"dash-5","name":"Learning Journey \u2014 Wellbeing","desc":"","docs":[],"status":"done"},{"id":"dash-6","name":"Research Library (Zotero)","desc":"","docs":[],"status":"done"},{"id":"dash-7","name":"Observatorio Social Project","desc":"A primeira etapa do projeto j\u00e1 foi paga e concluida (analise de dados secund\u00e1rios). A segunda etapa do projeto, que \u00e9 o levantamento de dados prim\u00e1rios ser\u00e1 iniciada com atraso o dia 20/3.","docs":[{"name":"Google earth files","url":"https://drive.google.com/drive/folders/1QIDy2FzV_OJCRcIiIRPHg0bW3q3w2s4O"}],"status":"paused"}]},{"id":"comm","light":"green","title":"Community (Agent)\nEngagement","designedActions":["Design Biomas Pitch Deck for Agents","Design Agents Mapping Process","Design Website and Marketing Materials","Design MAS Two Level Program Involvement w/ SLA","Agents Acceleration Program","Agents Centralized Database","Facilitate workshops to reach shared understanding of mission","Create a manual on agent mapping and agent organizing for new bioregions"],"outcome":"Have a sample of 5 agents (minimum) engaged and working together towards a \"Small Better World\". Have process mapped out so it can be implemented in new bioregions.","statusNote":"Conducted a couple of tests and validated 1 case study so far.","projects":[{"id":"com-1","name":"Construction of our narrative","desc":"","docs":[],"status":"done"},{"id":"com-2","name":"Piracanga pilot launch","desc":"","docs":[],"status":"done"},{"id":"com-3","name":"Conduru Park MAS project","desc":"","docs":[],"status":"done"},{"id":"com-4","name":"Love of Place Workshop","desc":"","docs":[],"status":"done"},{"id":"com-5","name":"CRM Design on Airtable","desc":"","docs":[],"status":"paused"},{"id":"com-6","name":"Noronha \u2014 GNH Project","desc":"","docs":[],"status":"done"},{"id":"com-7","name":"Agents mapping questionnaire","desc":"","docs":[],"status":"done"}]},{"id":"data","light":"green","title":"Data Collection","designedActions":["Primary Data Collection","Secondary Data Collection","Agents Meeting","Gap analysis and opportunities","Designing a MAS \u2014 Explore Gen AI Tools already available"],"outcome":"Have at least one test of how collection of 3 types of data (environmental, economical, and social) leads to better decision making.","statusNote":"Will conduct test in Biohub (Piracanga) once we have the MVP of the dashboard.","projects":[{"id":"dat-1","name":"Master Plan for Serra Grande","desc":"","docs":[],"status":"done"},{"id":"dat-2","name":"Plan for APA Serra Grande / Itacar\u00e9","desc":"","docs":[],"status":"done"},{"id":"dat-3","name":"Water project with Instituto Somos Agua","desc":"","docs":[],"status":"done"},{"id":"dat-4","name":"Noronha \u2014 GNH Project","desc":"","docs":[],"status":"done"}]},{"id":"bio","light":"red","title":"BioLab Design","designedActions":["Design BioLab Network Proposal (mentors / access to market)","Design BioLab Programs (Agents Acceleration Program / Projects Investment Program)","Call for projects and solutions","Design Search and Selection Process","Define and Build Investment Committee","Design Selection Criteria Process (60 / 20 / 20)"],"outcome":"Have a program well defined on how to launch and fund projects.","statusNote":"","projects":[{"id":"bio-1","name":"LJ: The Human Project","desc":"","docs":[]},{"id":"bio-2","name":"Mentoring Program: Bioinsumes Startup","desc":"","docs":[]}]},{"id":"y2","light":"red","title":"Beginning of Year 2:\n(Projects may appear.)","designedActions":["Run Search Programs (open calls or by nomination)","Run Selection Process","Define Projects to be invested / incubated / accelerated","Raise other sources of capital"],"outcome":"Have at least one project ready to be funded with co-investors by beginning of year two.","statusNote":"Potential projects analyzed and being monitored.","projects":[{"id":"y2-1","name":"Bioinsumes in Serra Grande","desc":"","docs":[]},{"id":"y2-2","name":"Tapiocas in Serra Grande","desc":"","docs":[]},{"id":"y2-3","name":"Educational Experiences in Piracanga","desc":"","docs":[]},{"id":"y2-4","name":"Recycling Project","desc":"","docs":[]}]},{"id":"growth","light":"yellow","title":"Growth Proposal","designedActions":["Develop and deliver annual report for shareholders","Develop financial projection and budget for 5-year project"],"outcome":"Business plan for BioMas Global for the upcoming 5 years.","statusNote":"In progress.","projects":[{"id":"gro-1","name":"Annual report for shareholders","desc":"","docs":[]},{"id":"gro-2","name":"5-year financial projection & budget","desc":"","docs":[]}]}]');
 
 // ═══════════════════════════════════════
 //  STATE
@@ -768,10 +632,20 @@ let activeDel  = null;
 let activeProj = null;
 
 function loadState() {
-  try { const r = localStorage.getItem(SK); if (r) return JSON.parse(r); } catch(e) {}
+  try {
+    const ver = localStorage.getItem(SK + '_seed');
+    if (ver === SEED_VERSION) {
+      const r = localStorage.getItem(SK);
+      if (r) return JSON.parse(r);
+    }
+  } catch(e) {}
+  // No data yet, or data is from an older version — load fresh from DEFAULTS
   return JSON.parse(JSON.stringify(DEFAULTS));
 }
-function persist() { localStorage.setItem(SK, JSON.stringify(state)); }
+function persist() {
+  localStorage.setItem(SK, JSON.stringify(state));
+  localStorage.setItem(SK + '_seed', SEED_VERSION);
+}
 function getDel(id) { return state.find(d => d.id === id); }
 function getProj(dId, pId) { const d = getDel(dId); return d && d.projects.find(p => p.id === pId); }
 
