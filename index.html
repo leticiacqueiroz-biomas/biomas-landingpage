@@ -1261,17 +1261,24 @@ footer {
 
 .team-dash-header {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  padding: 20px 48px;
+  padding: 0 48px 0 32px;
   background: #031e28;
   border-bottom: 1px solid rgba(5,171,133,0.1);
+  height: 52px;
+  flex-shrink: 0;
 }
 .team-dash-header h2 {
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--green);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-right: 32px;
+  border-right: 1px solid rgba(255,255,255,0.07);
 }
 .team-dash-exit {
   font-size: 11px;
@@ -1279,22 +1286,23 @@ footer {
   text-transform: uppercase;
   color: rgba(255,255,255,0.4);
   background: none;
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 8px 20px;
-  border-radius: 4px;
+  border: none;
+  border-left: 1px solid rgba(255,255,255,0.07);
+  padding: 0 0 0 28px;
   cursor: pointer;
   font-family: var(--font);
   transition: all .2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 .team-dash-exit:hover {
   color: var(--white);
-  border-color: rgba(255,255,255,0.3);
 }
 
 .team-dash-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 48px 24px;
+  width: 100%;
+  padding: 32px 48px;
 }
 .team-dash-content h3 {
   font-size: 16px;
@@ -1348,15 +1356,16 @@ footer {
 .team-nav-tabs {
   display: flex;
   gap: 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  margin-bottom: 32px;
+  align-self: stretch;
+  flex: 1;
+  padding: 0 16px;
 }
 .team-nav-tab {
-  padding: 12px 24px;
+  padding: 0 20px;
   font-family: var(--font);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.3px;
   text-transform: uppercase;
   color: rgba(255,255,255,0.35);
   background: none;
@@ -1364,6 +1373,7 @@ footer {
   border-bottom: 2px solid transparent;
   cursor: pointer;
   transition: all .2s;
+  white-space: nowrap;
 }
 .team-nav-tab:hover { color: rgba(255,255,255,0.6); }
 .team-nav-tab.active {
@@ -1372,6 +1382,15 @@ footer {
 }
 .team-tab-panel { display: none; }
 .team-tab-panel.active { display: block; }
+#tab-deliverables {
+  margin: -32px -48px 0;
+}
+#tab-deliverables iframe {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 52px);
+  border: none;
+}
 
 /* ── SPRINT MANAGEMENT ── */
 .sprint-view-controls {
@@ -2319,11 +2338,11 @@ select.status-badge option {
 <div class="team-overlay" id="teamOverlay">
   <div class="team-login-card">
     <button class="team-close-btn" onclick="closeTeamLogin()">&times;</button>
-    <h3>Team Biomas</h3>
-    <p>Acesso restrito para membros da equipe.</p>
+    <h3>Biomas Team</h3>
+    <p>Restricted access for team members.</p>
     <input type="password" id="teamPassword" placeholder="Password" onkeydown="if(event.key==='Enter') teamLogin()">
-    <button class="team-login-btn" onclick="teamLogin()">Entrar</button>
-    <div class="team-login-error" id="teamError">Senha incorreta. Tente novamente.</div>
+    <button class="team-login-btn" onclick="teamLogin()">Sign in</button>
+    <div class="team-login-error" id="teamError">Incorrect password. Please try again.</div>
   </div>
 </div>
 
@@ -2331,21 +2350,20 @@ select.status-badge option {
 <div class="team-dashboard" id="teamDashboard">
   <div class="team-dash-header">
     <h2>Biomas · Team Hub</h2>
-    <button class="team-dash-exit" onclick="closeTeamDashboard()">Voltar ao site</button>
+    <div class="team-nav-tabs">
+      <button class="team-nav-tab active" onclick="switchTeamTab('deliverables')">Discovery Year</button>
+      <button class="team-nav-tab" onclick="switchTeamTab('tasks')">Task Manager</button>
+      <button class="team-nav-tab" onclick="switchTeamTab('links')">Internal Links &amp; Materials</button>
+      <button class="team-nav-tab" onclick="switchTeamTab('notes')">Observations</button>
+    </div>
+    <button class="team-dash-exit" onclick="closeTeamDashboard()">← Back to site</button>
   </div>
   <div class="team-dash-content">
 
-    <!-- TAB NAVIGATION -->
-    <div class="team-nav-tabs">
-      <button class="team-nav-tab active" onclick="switchTeamTab('tasks')">Gestão de Tarefas</button>
-      <button class="team-nav-tab" onclick="switchTeamTab('links')">Links Internos</button>
-      <button class="team-nav-tab" onclick="switchTeamTab('notes')">Notas</button>
-    </div>
-
     <!-- ═══ TAB: TASKS ═══ -->
-    <div class="team-tab-panel active" id="tab-tasks">
+    <div class="team-tab-panel" id="tab-tasks">
 
-      <div id="tasksLoading" class="team-loading">Carregando tarefas do Google Sheets...</div>
+      <div id="tasksLoading" class="team-loading">Loading tasks from Google Sheets...</div>
 
       <div id="tasksContent" style="display:none;">
 
@@ -2367,19 +2385,18 @@ select.status-badge option {
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
           <div class="sprint-view-controls" id="viewSwitcher">
             <button class="sprint-filter-btn active" onclick="switchView('kanban')">Kanban</button>
-            <button class="sprint-filter-btn" onclick="switchView('projects')">Por Projeto</button>
-            <button class="sprint-filter-btn" onclick="switchView('person')">Por Pessoa</button>
-            <button class="sprint-filter-btn" onclick="switchView('list')">Lista</button>
+            <button class="sprint-filter-btn" onclick="switchView('projects')">By Project</button>
+            <button class="sprint-filter-btn" onclick="switchView('person')">By Person</button>
+            <button class="sprint-filter-btn" onclick="switchView('list')">List</button>
           </div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <button class="sprint-filter-btn" onclick="showAddTask()" style="background:rgba(5,171,133,0.15);color:var(--green);border-color:rgba(5,171,133,0.3);" id="btnAddTask">+ Nova Tarefa</button>
-            <button class="sprint-filter-btn" onclick="syncFromSheets()" id="btnSync" title="Atualizar dados da planilha Google Sheets agora" style="background:rgba(187,215,241,0.1);color:var(--sky);border-color:rgba(187,215,241,0.2);">&#8635; Sync Sheets</button>
-            <button class="sprint-filter-btn" onclick="toggleLang()" id="btnLang" title="Switch language" style="background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.4);border-color:rgba(255,255,255,0.08);font-size:10px;">EN</button>
+            <button class="sprint-filter-btn" onclick="showAddTask()" style="background:rgba(5,171,133,0.15);color:var(--green);border-color:rgba(5,171,133,0.3);" id="btnAddTask">+ New Task</button>
+            <button class="sprint-filter-btn" onclick="syncFromSheets()" id="btnSync" title="Refresh data from Google Sheets now" style="background:rgba(187,215,241,0.1);color:var(--sky);border-color:rgba(187,215,241,0.2);">&#8635; Sync Sheets</button>
             <a href="https://docs.google.com/spreadsheets/d/1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g/edit" target="_blank"
                style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.25);text-decoration:none;">
               Sheets &nearr;
             </a>
-            <button class="team-refresh-btn" onclick="resetToBaseline()" title="Resetar dados da planilha original">&#8635; Reset</button>
+            <button class="team-refresh-btn" onclick="resetToBaseline()" title="Reset to original spreadsheet data">&#8635; Reset</button>
           </div>
         </div>
 
@@ -2391,11 +2408,11 @@ select.status-badge option {
       <div class="team-overlay" id="addTaskModal">
         <div class="team-login-card" style="max-width:520px;text-align:left;">
           <button class="team-close-btn" onclick="hideAddTask()">&times;</button>
-          <h3 style="margin-bottom:20px;">Nova Tarefa</h3>
+          <h3 style="margin-bottom:20px;">New Task</h3>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <input type="text" id="newTaskName" placeholder="Nome da tarefa *" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
+            <input type="text" id="newTaskName" placeholder="Task name *" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-              <input type="text" id="newTaskProject" placeholder="Projeto" list="projectList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
+              <input type="text" id="newTaskProject" placeholder="Project" list="projectList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
               <datalist id="projectList">
                 <option value="INTELIGENCIA GEO ESPACIAL">
                 <option value="DATA COLLECTION">
@@ -2418,7 +2435,7 @@ select.status-badge option {
               </datalist>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-              <input type="text" id="newTaskWho" placeholder="Responsável" list="whoList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
+              <input type="text" id="newTaskWho" placeholder="Owner" list="whoList" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
               <datalist id="whoList">
                 <option value="LETICIA">
                 <option value="NATASHA">
@@ -2431,57 +2448,57 @@ select.status-badge option {
                 <option value="ON HOLD">On Hold</option>
               </select>
             </div>
-            <input type="text" id="newTaskPergunta" placeholder="Pergunta que estamos tentando responder" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-            <input type="text" id="newTaskContexto" placeholder="Contexto" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
-            <button onclick="addTask()" style="margin-top:8px;padding:12px;background:var(--green);color:var(--teal);font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;">Adicionar Tarefa</button>
+            <input type="text" id="newTaskPergunta" placeholder="Question we're trying to answer" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
+            <input type="text" id="newTaskContexto" placeholder="Context" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-family:var(--font);font-size:13px;outline:none;">
+            <button onclick="addTask()" style="margin-top:8px;padding:12px;background:var(--green);color:var(--teal);font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;">Add Task</button>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- ═══ TAB: DISCOVERY YEAR DELIVERABLES ═══ -->
+    <div class="team-tab-panel active" id="tab-deliverables">
+      <iframe src="../deliverables-y1.html" title="Discovery Year Deliverables"></iframe>
+    </div>
+
     <!-- ═══ TAB: LINKS ═══ -->
     <div class="team-tab-panel" id="tab-links">
-      <h3>Links internos</h3>
+      <h3>Internal Links &amp; Materials</h3>
       <div class="team-links-grid">
         <div class="team-link-card">
           <h4>Google Sheets</h4>
-          <p>Planilha de sprints e tarefas do Biomas.</p>
-          <a href="https://docs.google.com/spreadsheets/d/1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g/edit" target="_blank">Abrir Planilha &rarr;</a>
+          <p>Biomas sprint and task tracking spreadsheet.</p>
+          <a href="https://docs.google.com/spreadsheets/d/1bSrKJ54O7bsil2ooBXE3KWZDaiM5fanTWk_z6lOX-3g/edit?gid=1983252305#gid=1983252305" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
         </div>
         <div class="team-link-card">
           <h4>Google Drive</h4>
-          <p>Documentos, apresentações e arquivos compartilhados.</p>
-          <a href="#" target="_blank">Abrir Drive &rarr;</a>
+          <p>Documents, presentations and shared files.</p>
+          <a href="https://drive.google.com/drive/folders/0AI6fMA_Ms8SIUk9PVA" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
         </div>
         <div class="team-link-card">
           <h4>Notion Workspace</h4>
-          <p>Planejamento, roadmap e documentação técnica.</p>
-          <a href="#" target="_blank">Abrir Notion &rarr;</a>
+          <p>Planning, roadmap and technical documentation.</p>
+          <a href="https://www.notion.so/BIOMAS-Discovery-Year-2025-2026-1718879987e680a6bda2ec3f3e075f0a?source=copy_link" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
         </div>
         <div class="team-link-card">
-          <h4>Figma</h4>
-          <p>Design system, protótipos e assets visuais.</p>
-          <a href="#" target="_blank">Abrir Figma &rarr;</a>
+          <h4>Piracanga Live Dashboard</h4>
+          <p>Territorial intelligence platform for Piracanga.</p>
+          <a href="https://leticiacqueiroz-biomas.github.io/censopiracanga2025/" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
         </div>
         <div class="team-link-card">
-          <h4>Analytics</h4>
-          <p>Métricas de acesso e performance da plataforma.</p>
-          <a href="#" target="_blank">Abrir Analytics &rarr;</a>
-        </div>
-        <div class="team-link-card">
-          <h4>Financeiro</h4>
-          <p>Planilhas de orçamento, grants e relatórios financeiros.</p>
-          <a href="#" target="_blank">Abrir Planilha &rarr;</a>
+          <h4>Instituto Somos Água Portal</h4>
+          <p>Water project portal for the Serra Grande watershed.</p>
+          <a href="https://leticiacqueiroz-biomas.github.io/somos-agua/" target="_blank" rel="noopener noreferrer">Open &rarr;</a>
         </div>
       </div>
     </div>
 
     <!-- ═══ TAB: NOTES ═══ -->
     <div class="team-tab-panel" id="tab-notes">
-      <h3>Notas da equipe</h3>
+      <h3>Observations</h3>
       <div class="team-notes-area">
-        <textarea id="teamNotes" placeholder="Notas compartilhadas da equipe..."></textarea>
-        <button class="team-notes-save" onclick="saveTeamNotes()">Salvar notas</button>
+        <textarea id="teamNotes" placeholder="Shared team observations and notes..."></textarea>
+        <button class="team-notes-save" onclick="saveTeamNotes()">Save notes</button>
       </div>
     </div>
 
@@ -2555,8 +2572,8 @@ select.status-badge option {
     const notes = document.getElementById('teamNotes').value;
     localStorage.setItem('biomas_team_notes', notes);
     const btn = document.querySelector('.team-notes-save');
-    btn.textContent = 'Salvo!';
-    setTimeout(() => { btn.textContent = 'Salvar notas'; }, 1500);
+    btn.textContent = 'Saved!';
+    setTimeout(() => { btn.textContent = 'Save notes'; }, 1500);
   }
 
   // ── TAB SWITCHER ──
@@ -2889,7 +2906,7 @@ select.status-badge option {
   }
 
   // ── i18n ──
-  let currentLang = localStorage.getItem('biomas_lang') || 'pt';
+  let currentLang = 'en';
 
   const i18n = {
     pt: {
