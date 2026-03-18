@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discovery Year Deliverables · BIOMAS</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal:  #01253a;
+  --teal2: #02344f;
+  --green: #05ab85;
+  --gold:  #bf9138;
+  --cream: #fffdf9;
+  --muted: #f2f0eb;
+  --border: rgba(1,37,58,0.13);
+  --red:   #d93025;
+  --yel:   #e8a020;
+  --font: 'Segoe UI', system-ui, sans-serif;
+}
+html, body { height: 100%; }
+/* When embedded in iframe: hide topbar and expand workspace */
+body.in-iframe .topbar { display: none; }
+body.in-iframe .workspace { height: 100vh; }
+body {
+  font-family: var(--font);
+  color: var(--teal);
+  background: var(--muted);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--teal);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  justify-content: space-between;
+  flex-shrink: 0;
+  z-index: 100;
+}
+.topbar-brand { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: .4px; }
+.topbar-brand span { color: var(--green); }
+.topbar-nav { display: flex; gap: 22px; }
+.topbar-nav a { color: rgba(255,255,255,.5); text-decoration: none; font-size: 13px; font-weight: 500; }
+.topbar-nav a.active { color: var(--green); }
+
+/* ── MAIN LAYOUT ── */
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 52px);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: #f8f6f1;
+  border-right: 1.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 18px 12px 24px;
+  gap: 6px;
+}
+.sidebar-title {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(1,37,58,.4);
+  padding: 0 6px;
+  margin-bottom: 8px;
+}
+.sidebar-item {
+  background: var(--teal);
+  color: #fff;
+  border-radius: 8px;
+  padding: 11px 12px 11px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: background .15s;
+  border-left: 3px solid transparent;
+}
+.sidebar-item:hover  { background: var(--teal2); }
+.sidebar-item.active { background: var(--teal2); border-left-color: var(--green); }
+.sidebar-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+}
+/* Traffic light */
+.tl-wrap {
+  flex-shrink: 0;
+  border: 1.5px dashed rgba(255,255,255,.35);
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tl-btn {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform .12s, box-shadow .12s;
+}
+.tl-btn:hover { transform: scale(1.15); }
+.tl-btn[data-s="green"]  { background: var(--green); box-shadow: 0 0 0 3px rgba(5,171,133,.25); }
+.tl-btn[data-s="yellow"] { background: var(--yel);   box-shadow: 0 0 0 3px rgba(232,160,32,.25); }
+.tl-btn[data-s="red"]    { background: var(--red);   box-shadow: 0 0 0 3px rgba(217,48,37,.25); }
+.tl-tip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  background: #000;
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.tl-btn:hover .tl-tip { opacity: 1; }
+
+/* ── CONTENT AREA ── */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.content-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  color: rgba(1,37,58,.3);
+}
+.content-placeholder-icon { font-size: 36px; }
+.content-placeholder-text { font-size: 14px; }
+
+/* ── DETAIL PANEL ── */
+.detail { display: none; flex-direction: column; gap: 20px; }
+.detail.visible { display: flex; }
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.detail-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--teal);
+}
+.detail-legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.leg-dot { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: rgba(1,37,58,.55); }
+.dot { width: 9px; height: 9px; border-radius: 50%; }
+.dot-g { background: var(--green); }
+.dot-y { background: var(--yel); }
+.dot-r { background: var(--red); }
+
+/* 4-column grid */
+.four-cols {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1fr 1.2fr;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  background: var(--border);
+  gap: 1px;
+  flex: 1;
+}
+.col-wrap { display: flex; flex-direction: column; background: #fff; }
+.col-head {
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 14px 18px;
+  text-align: center;
+  line-height: 1.3;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.col-head small {
+  display: block;
+  font-weight: 400;
+  font-size: 10.5px;
+  opacity: .6;
+  margin-top: 2px;
+}
+.col-body {
+  padding: 16px 18px;
+  flex: 1;
+  font-size: 13px;
+  color: var(--teal);
+  line-height: 1.6;
+}
+
+/* Designed actions — numbered list */
+.action-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.action-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.action-num {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  background: rgba(1,37,58,.08);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+  color: rgba(1,37,58,.5);
+}
+.action-text { color: rgba(1,37,58,.7); font-size: 12.5px; line-height: 1.55; }
+
+/* Outcome */
+.outcome-text {
+  font-size: 13px;
+  color: var(--teal);
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+/* Status — editable */
+.status-field {
+  min-height: 80px;
+  outline: none;
+  font-size: 13px;
+  color: var(--teal);
+  line-height: 1.6;
+  border-radius: 6px;
+  padding: 4px 6px;
+  margin: -4px -6px;
+  transition: background .15s;
+}
+.status-field:focus { background: rgba(5,171,133,.06); }
+.status-field:empty::before {
+  content: 'Add status note…';
+  color: rgba(1,37,58,.3);
+}
+.edit-hint {
+  font-size: 10px;
+  color: rgba(1,37,58,.3);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Projects column */
+.proj-col-body {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.proj-list { flex: 1; }
+.proj-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .12s;
+  position: relative;
+}
+.proj-row:hover { background: rgba(5,171,133,.08); }
+.proj-row:hover .proj-x { opacity: 1; }
+.proj-num {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(1,37,58,.3);
+  width: 16px;
+}
+.proj-name-el {
+  flex: 1;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--teal);
+  outline: none;
+  border-radius: 3px;
+  padding: 1px 3px;
+  line-height: 1.4;
+}
+.proj-name-el:focus {
+  background: rgba(5,171,133,.1);
+  box-shadow: 0 0 0 2px var(--green);
+}
+.proj-open {
+  background: none;
+  border: none;
+  color: rgba(5,171,133,.55);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0 3px;
+  flex-shrink: 0;
+  transition: color .15s, transform .15s;
+  opacity: 1;
+}
+.proj-open:hover { color: var(--green); transform: translateX(2px); }
+.proj-x {
+  opacity: 0;
+  background: none;
+  border: none;
+  color: rgba(217,48,37,.5);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 2px;
+  flex-shrink: 0;
+  transition: opacity .15s, color .15s;
+}
+.proj-x:hover { color: var(--red); }
+
+/* ── PROJECT STATUS INDICATOR ── */
+.proj-status-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1.5px solid rgba(1,37,58,.18);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  font-size: 9px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all .15s;
+  padding: 0;
+}
+.proj-status-btn:hover { border-color: rgba(1,37,58,.4); }
+.proj-status-btn.done {
+  background: rgba(5,171,133,.14);
+  border-color: var(--green);
+  color: var(--green);
+}
+.proj-status-btn.paused {
+  background: rgba(232,160,32,.12);
+  border-color: var(--yel);
+  color: var(--yel);
+}
+.proj-status-btn.discontinued {
+  background: rgba(217,48,37,.1);
+  border-color: var(--red);
+  color: var(--red);
+}
+.proj-row.paused .proj-name-el {
+  opacity: .6;
+  font-style: italic;
+}
+.proj-row.discontinued .proj-name-el {
+  opacity: .4;
+  text-decoration: line-through;
+}
+
+.add-proj-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  margin-top: 6px;
+  background: none;
+  border: 1.5px dashed rgba(5,171,133,.3);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font);
+  transition: background .15s, border-color .15s;
+}
+.add-proj-btn:hover { background: rgba(5,171,133,.06); border-color: var(--green); }
+
+/* ── SLIDE PANEL (project detail) ── */
+.overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(1,37,58,.35);
+  z-index: 300;
+  backdrop-filter: blur(2px);
+}
+.overlay.on { display: block; }
+.slide-panel {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 460px;
+  max-width: 95vw;
+  background: var(--cream);
+  z-index: 400;
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 40px rgba(1,37,58,.15);
+}
+.slide-panel.on { transform: translateX(0); }
+.sp-head {
+  background: var(--teal);
+  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.sp-close {
+  width: 30px; height: 30px;
+  background: rgba(255,255,255,.12);
+  border: none; border-radius: 6px;
+  color: #fff; cursor: pointer;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.sp-close:hover { background: rgba(255,255,255,.22); }
+.sp-del-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+.sp-title {
+  font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3;
+  outline: none; flex: 1;
+  border-radius: 4px; padding: 2px 4px;
+}
+.sp-title:focus { background: rgba(255,255,255,.1); }
+.sp-body { flex: 1; overflow-y: auto; padding: 22px; display: flex; flex-direction: column; gap: 22px; }
+.sp-sec-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(1,37,58,.4); margin-bottom: 7px; }
+.sp-desc {
+  min-height: 80px;
+  background: rgba(1,37,58,.03);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 13px;
+  font-size: 13px; color: var(--teal); line-height: 1.6;
+  outline: none;
+  transition: border-color .15s;
+}
+.sp-desc:focus { border-color: var(--green); }
+.sp-desc:empty::before { content: 'Add description, contacts, links, notes…'; color: rgba(1,37,58,.3); }
+.sp-docs-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.doc-list { display: flex; flex-direction: column; gap: 7px; }
+.doc-item {
+  display: flex; align-items: center; gap: 9px;
+  background: rgba(1,37,58,.03);
+  border: 1px solid var(--border);
+  border-radius: 7px; padding: 8px 11px;
+}
+.doc-ico { width: 28px; height: 28px; background: rgba(5,171,133,.12); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.doc-nm { flex: 1; font-size: 13px; font-weight: 600; color: var(--teal); min-width: 0; }
+.doc-url-text { font-size: 11px; color: rgba(1,37,58,.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+.doc-open { color: var(--green); text-decoration: none; font-size: 11.5px; font-weight: 600; flex-shrink: 0; }
+.doc-rm { background: none; border: none; color: rgba(217,48,37,.4); cursor: pointer; font-size: 16px; padding: 0; transition: color .15s; }
+.doc-rm:hover { color: var(--red); }
+.doc-empty { text-align: center; padding: 20px; color: rgba(1,37,58,.35); font-size: 13px; border: 1.5px dashed var(--border); border-radius: 8px; }
+.add-doc-form { display: none; flex-direction: column; gap: 8px; background: rgba(5,171,133,.05); border: 1.5px solid rgba(5,171,133,.25); border-radius: 8px; padding: 13px; }
+.add-doc-form.on { display: flex; }
+.add-doc-form input { background: #fff; border: 1.5px solid var(--border); border-radius: 6px; padding: 8px 10px; font-size: 13px; color: var(--teal); font-family: var(--font); outline: none; transition: border-color .15s; }
+.add-doc-form input:focus { border-color: var(--green); }
+.add-doc-form input::placeholder { color: rgba(1,37,58,.35); }
+.form-row { display: flex; gap: 8px; }
+.btn { padding: 8px 15px; border-radius: 7px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; font-family: var(--font); transition: opacity .15s; }
+.btn:hover { opacity: .85; }
+.btn-g { background: var(--green); color: #fff; }
+.btn-gh { background: rgba(1,37,58,.07); color: var(--teal); }
+.btn-out { background: none; border: 1.5px solid rgba(5,171,133,.4); color: var(--green); padding: 6px 13px; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 600; font-family: var(--font); display: flex; align-items: center; gap: 5px; transition: background .15s; }
+.btn-out:hover { background: rgba(5,171,133,.07); border-color: var(--green); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand"><span>BIOMAS</span> Team Portal</div>
+  <nav class="topbar-nav">
+    <a href="#">Dashboard</a>
+    <a href="#" class="active">Discovery Year Deliverables</a>
+    <a href="#">Projects</a>
+  </nav>
+</header>
+
+<div class="workspace">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Dimensions</div>
+    <div id="sidebar-items"></div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content" id="content">
+
+    <!-- Placeholder -->
+    <div class="content-placeholder" id="placeholder">
+      <div class="content-placeholder-icon">←</div>
+      <div class="content-placeholder-text">Select a dimension to view details</div>
+    </div>
+
+    <!-- Detail view -->
+    <div class="detail" id="detail">
+      <div class="detail-header">
+        <div class="detail-title" id="detail-title"></div>
+        <div class="detail-legend">
+          <div class="leg-dot"><div class="dot dot-g"></div> On track</div>
+          <div class="leg-dot"><div class="dot dot-y"></div> At risk</div>
+          <div class="leg-dot"><div class="dot dot-r"></div> Delayed</div>
+        </div>
+      </div>
+
+      <div class="four-cols">
+
+        <!-- COL 1: Designed Actions -->
+        <div class="col-wrap">
+          <div class="col-head">Designed Actions<small>March 2025</small></div>
+          <div class="col-body" id="col-actions"></div>
+        </div>
+
+        <!-- COL 2: Expected Outcome -->
+        <div class="col-wrap">
+          <div class="col-head">Expected Outcome<small>by end of Discovery Year</small></div>
+          <div class="col-body" id="col-outcome"></div>
+        </div>
+
+        <!-- COL 3: Status -->
+        <div class="col-wrap">
+          <div class="col-head">Status</div>
+          <div class="col-body">
+            <div class="status-field" id="col-status" contenteditable="true" spellcheck="false"></div>
+            <div class="edit-hint">✏️ Click to edit</div>
+          </div>
+        </div>
+
+        <!-- COL 4: Related Projects -->
+        <div class="col-wrap">
+          <div class="col-head">Related Projects</div>
+          <div class="proj-col-body">
+            <div class="proj-list" id="col-projects"></div>
+            <button class="add-proj-btn" id="add-proj-btn" onclick="addProject()">＋ Add project</button>
+            <div class="edit-hint" style="margin-top:8px;">✏️ Click name to edit · › to open · ○ to set status</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- OVERLAY & SLIDE PANEL -->
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+<div class="slide-panel" id="slide-panel">
+  <div class="sp-head">
+    <div style="flex:1;min-width:0;">
+      <div class="sp-del-tag" id="sp-del-tag"></div>
+      <div class="sp-title" id="sp-title" contenteditable="true" spellcheck="false"></div>
+    </div>
+    <button class="sp-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="sp-body">
+    <div>
+      <div class="sp-sec-label">Description & Notes</div>
+      <div class="sp-desc" id="sp-desc" contenteditable="true" spellcheck="false"></div>
+    </div>
+    <div>
+      <div class="sp-docs-header">
+        <div class="sp-sec-label" style="margin-bottom:0">Documents & Links</div>
+        <button class="btn-out" onclick="toggleAddDoc()">＋ Add</button>
+      </div>
+      <div class="add-doc-form" id="add-doc-form">
+        <input type="text" id="doc-name-in" placeholder="Document name">
+        <input type="url"  id="doc-url-in"  placeholder="URL or link (optional)">
+        <div class="form-row">
+          <button class="btn btn-g" onclick="saveDoc()">Save</button>
+          <button class="btn btn-gh" onclick="toggleAddDoc()">Cancel</button>
+        </div>
+      </div>
+      <div class="doc-list" id="doc-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════
+const SK = 'biomas_y1_v2';
+
+const DEFAULTS = [
+  {
+    id: 'ops', light: 'yellow',
+    title: 'Operations Start\n& Legal Structure',
+    designedActions: [
+      'SLA with Rodrigo for affiliate office (to hire and run local operation) and Natasha for headquarters',
+      'Define Legal Structure (US and Brazil)',
+      'Select local law firm to register operation',
+      'Set up entity to start operation as an NGO',
+    ],
+    outcome: 'Have EIN for Global Headquarter and CNPJ for local affiliate office in order to receive income from funders who want to make a tax-free donation.',
+    statusNote: 'Moving a little slower than predicted due to US government policies.',
+    projects: [
+      { id:'ops-1', name:'WTS Germany for Foundation Set Up', desc:'', docs:[] },
+      { id:'ops-2', name:'Brazilian Lawyers — name registration', desc:'', docs:[] },
+      { id:'ops-3', name:'Brazilian Lawyers — legal entity', desc:'', docs:[] },
+      { id:'ops-4', name:'Operations Management on Notion', desc:'', docs:[] },
+    ]
+  },
+  {
+    id: 'dash', light: 'yellow',
+    title: 'Bio/Mas Dashboard',
+    designedActions: [
+      'Search for Bioregional Systemic Impact Dashboards',
+      'Search for specific dashboards for Environmental, Social & Economic',
+      'Analyse pros and cons between every option',
+      'Make a preliminary list of KPIs for the triple bottom line',
+      'Partner with entities that can provide IP from their previous work',
+      'Check out available data (Public and Private/Agents)',
+      'Check out quality and accessibility of available data',
+      'Define who will own the data and where data will reside',
+      'Build MVP of Bioregional Dashboard',
+    ],
+    outcome: 'Have an MVP of a bioregional dashboard that evaluates triple bottom line. Framework should be replicable for all future bioregions.',
+    statusNote: 'Decided to pilot in a Biohub (Piracanga). Working on a bioregional dashboard for Piracanga to later design for the bioregion model.',
+    projects: [
+      { id:'dash-1', name:'Water project with Instituto Somos Agua', desc:'', docs:[] },
+      { id:'dash-2', name:'Noronha — GNH Project', desc:'', docs:[] },
+      { id:'dash-3', name:'Learning Journey — Dashboard', desc:'', docs:[] },
+      { id:'dash-4', name:'Learning Journey — Landscape', desc:'', docs:[] },
+      { id:'dash-5', name:'Learning Journey — Wellbeing', desc:'', docs:[] },
+      { id:'dash-6', name:'Research Library (Zotero)', desc:'', docs:[] },
+      { id:'dash-7', name:'Observatorio Social & Bioverse Proposals', desc:'', docs:[] },
+    ]
+  },
+  {
+    id: 'comm', light: 'green',
+    title: 'Community (Agent)\nEngagement',
+    designedActions: [
+      'Design Biomas Pitch Deck for Agents',
+      'Design Agents Mapping Process',
+      'Design Website and Marketing Materials',
+      'Design MAS Two Level Program Involvement w/ SLA',
+      'Agents Acceleration Program',
+      'Agents Centralized Database',
+      'Facilitate workshops to reach shared understanding of mission',
+      'Create a manual on agent mapping and agent organizing for new bioregions',
+    ],
+    outcome: 'Have a sample of 5 agents (minimum) engaged and working together towards a "Small Better World". Have process mapped out so it can be implemented in new bioregions.',
+    statusNote: 'Conducted a couple of tests and validated 1 case study so far.',
+    projects: [
+      { id:'com-1', name:'Construction of our narrative', desc:'', docs:[] },
+      { id:'com-2', name:'Piracanga pilot launch', desc:'', docs:[] },
+      { id:'com-3', name:'Conduru Park MAS project', desc:'', docs:[] },
+      { id:'com-4', name:'Love of Place Workshop', desc:'', docs:[] },
+      { id:'com-5', name:'CRM Design on Airtable', desc:'', docs:[] },
+      { id:'com-6', name:'Noronha — GNH Project', desc:'', docs:[] },
+      { id:'com-7', name:'Agents mapping questionnaire', desc:'', docs:[] },
+    ]
+  },
+  {
+    id: 'data', light: 'green',
+    title: 'Data Collection',
+    designedActions: [
+      'Primary Data Collection',
+      'Secondary Data Collection',
+      'Agents Meeting',
+      'Gap analysis and opportunities',
+      'Designing a MAS — Explore Gen AI Tools already available',
+    ],
+    outcome: 'Have at least one test of how collection of 3 types of data (environmental, economical, and social) leads to better decision making.',
+    statusNote: 'Will conduct test in Biohub (Piracanga) once we have the MVP of the dashboard.',
+    projects: [
+      { id:'dat-1', name:'Master Plan for Serra Grande', desc:'', docs:[] },
+      { id:'dat-2', name:'Plan for APA Serra Grande / Itacaré', desc:'', docs:[] },
+      { id:'dat-3', name:'Water project with Instituto Somos Agua', desc:'', docs:[] },
+      { id:'dat-4', name:'Noronha — GNH Project', desc:'', docs:[] },
+    ]
+  },
+  {
+    id: 'bio', light: 'red',
+    title: 'BioLab Design',
+    designedActions: [
+      'Design BioLab Network Proposal (mentors / access to market)',
+      'Design BioLab Programs (Agents Acceleration Program / Projects Investment Program)',
+      'Call for projects and solutions',
+      'Design Search and Selection Process',
+      'Define and Build Investment Committee',
+      'Design Selection Criteria Process (60 / 20 / 20)',
+    ],
+    outcome: 'Have a program well defined on how to launch and fund projects.',
+    statusNote: '',
+    projects: [
+      { id:'bio-1', name:'LJ: The Human Project', desc:'', docs:[] },
+      { id:'bio-2', name:'Mentoring Program: Bioinsumes Startup', desc:'', docs:[] },
+    ]
+  },
+  {
+    id: 'y2', light: 'yellow',
+    title: 'Beginning of Year 2:\n(Projects may appear.)',
+    designedActions: [
+      'Run Search Programs (open calls or by nomination)',
+      'Run Selection Process',
+      'Define Projects to be invested / incubated / accelerated',
+      'Raise other sources of capital',
+    ],
+    outcome: 'Have at least one project ready to be funded with co-investors by beginning of year two.',
+    statusNote: 'Potential projects analyzed and being monitored.',
+    projects: [
+      { id:'y2-1', name:'Bioinsumes in Serra Grande', desc:'', docs:[] },
+      { id:'y2-2', name:'Tapiocas in Serra Grande', desc:'', docs:[] },
+      { id:'y2-3', name:'Educational Experiences in Piracanga', desc:'', docs:[] },
+      { id:'y2-4', name:'Recycling Project', desc:'', docs:[] },
+    ]
+  },
+  {
+    id: 'growth', light: 'yellow',
+    title: 'Growth Proposal',
+    designedActions: [
+      'Develop and deliver annual report for shareholders',
+      'Develop financial projection and budget for 5-year project',
+    ],
+    outcome: 'Business plan for BioMas Global for the upcoming 5 years.',
+    statusNote: 'In progress.',
+    projects: [
+      { id:'gro-1', name:'Annual report for shareholders', desc:'', docs:[] },
+      { id:'gro-2', name:'5-year financial projection & budget', desc:'', docs:[] },
+    ]
+  },
+];
+
+// ═══════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════
+let state = loadState();
+let activeDel  = null;
+let activeProj = null;
+
+function loadState() {
+  try { const r = localStorage.getItem(SK); if (r) return JSON.parse(r); } catch(e) {}
+  return JSON.parse(JSON.stringify(DEFAULTS));
+}
+function persist() { localStorage.setItem(SK, JSON.stringify(state)); }
+function getDel(id) { return state.find(d => d.id === id); }
+function getProj(dId, pId) { const d = getDel(dId); return d && d.projects.find(p => p.id === pId); }
+
+const TL_CYCLE  = { green:'yellow', yellow:'red', red:'green' };
+const TL_LABELS = { green:'On track', yellow:'At risk', red:'Delayed' };
+
+// ═══════════════════════════════════════
+//  SIDEBAR
+// ═══════════════════════════════════════
+function buildSidebar() {
+  const container = document.getElementById('sidebar-items');
+  container.innerHTML = '';
+  state.forEach(del => {
+    const item = document.createElement('div');
+    item.className = 'sidebar-item';
+    item.id = `si-${del.id}`;
+    item.innerHTML = `
+      <div class="sidebar-label">${del.title.replace('\n','<br>')}</div>
+      <div class="tl-wrap">
+        <button class="tl-btn" id="tl-${del.id}" data-s="${del.light}" title="${TL_LABELS[del.light]}">
+          <span class="tl-tip">${TL_LABELS[del.light]}<br><small>Click to change</small></span>
+        </button>
+      </div>
+    `;
+    item.addEventListener('click', e => {
+      if (e.target.closest('.tl-btn')) return;
+      selectDel(del.id);
+    });
+    item.querySelector('.tl-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      cycleLight(del.id);
+    });
+    container.appendChild(item);
+  });
+}
+
+function cycleLight(id) {
+  const del = getDel(id);
+  del.light = TL_CYCLE[del.light];
+  persist();
+  const btn = document.getElementById(`tl-${id}`);
+  btn.dataset.s = del.light;
+  btn.title = TL_LABELS[del.light];
+  btn.querySelector('.tl-tip').innerHTML = `${TL_LABELS[del.light]}<br><small>Click to change</small>`;
+}
+
+// ═══════════════════════════════════════
+//  DETAIL VIEW
+// ═══════════════════════════════════════
+function selectDel(id) {
+  // Save status of previous selection
+  if (activeDel) flushStatus();
+
+  // Update sidebar active state
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+  document.getElementById(`si-${id}`).classList.add('active');
+
+  activeDel = id;
+  const del = getDel(id);
+
+  document.getElementById('placeholder').style.display = 'none';
+  const detail = document.getElementById('detail');
+  detail.classList.add('visible');
+
+  document.getElementById('detail-title').textContent = del.title.replace('\n', ' ');
+
+  // Col 1: Designed Actions
+  const actCol = document.getElementById('col-actions');
+  const ul = document.createElement('ul');
+  ul.className = 'action-list';
+  del.designedActions.forEach((a, i) => {
+    const li = document.createElement('li');
+    li.className = 'action-item';
+    li.innerHTML = `<span class="action-num">${i+1}</span><span class="action-text">${esc(a)}</span>`;
+    ul.appendChild(li);
+  });
+  actCol.innerHTML = '';
+  actCol.appendChild(ul);
+
+  // Col 2: Outcome
+  const outCol = document.getElementById('col-outcome');
+  outCol.innerHTML = `<div class="outcome-text">${esc(del.outcome)}</div>`;
+
+  // Col 3: Status (editable)
+  const statusEl = document.getElementById('col-status');
+  statusEl.textContent = del.statusNote;
+  statusEl.oninput = null;
+  statusEl.oninput = () => { del.statusNote = statusEl.textContent; persist(); };
+
+  // Col 4: Projects
+  renderProjects(del);
+}
+
+function flushStatus() {
+  if (!activeDel) return;
+  const del = getDel(activeDel);
+  const el = document.getElementById('col-status');
+  if (del && el) { del.statusNote = el.textContent.trim(); persist(); }
+}
+
+function renderProjects(del) {
+  const container = document.getElementById('col-projects');
+  container.innerHTML = '';
+  del.projects.forEach((proj, idx) => {
+    container.appendChild(buildProjRow(del, proj, idx));
+  });
+}
+
+function buildProjRow(del, proj, idx) {
+  const status = proj.status || 'active';
+  const row = document.createElement('div');
+  row.className = status !== 'active' ? `proj-row ${status}` : 'proj-row';
+  row.id = `pr-${proj.id}`;
+
+  const num = document.createElement('span');
+  num.className = 'proj-num';
+  num.textContent = idx + 1;
+
+  // Status toggle: active → done (✓) → paused (⏸) → discontinued (✕) → active
+  const statusIcons  = { active: '', done: '✓', paused: '⏸', discontinued: '✕' };
+  const statusTitles = { active: 'Mark as done', done: 'Mark as paused', paused: 'Mark as discontinued', discontinued: 'Mark as active' };
+  const statusCycle  = { active: 'done', done: 'paused', paused: 'discontinued', discontinued: 'active' };
+  const statusBtn = document.createElement('button');
+  statusBtn.className = status !== 'active' ? `proj-status-btn ${status}` : 'proj-status-btn';
+  statusBtn.textContent = statusIcons[status];
+  statusBtn.title = statusTitles[status];
+  statusBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    proj.status = statusCycle[proj.status || 'active'];
+    statusBtn.className = proj.status !== 'active' ? `proj-status-btn ${proj.status}` : 'proj-status-btn';
+    statusBtn.textContent = statusIcons[proj.status];
+    statusBtn.title = statusTitles[proj.status];
+    row.className = proj.status !== 'active' ? `proj-row ${proj.status}` : 'proj-row';
+    persist();
+  });
+
+  const name = document.createElement('div');
+  name.className = 'proj-name-el';
+  name.contentEditable = true;
+  name.spellcheck = false;
+  name.textContent = proj.name;
+  name.addEventListener('click', e => e.stopPropagation());
+  name.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); name.blur(); } });
+  name.addEventListener('blur', () => {
+    proj.name = name.textContent.trim() || proj.name;
+    name.textContent = proj.name;
+    persist();
+    // Refresh numbering
+    const d = getDel(activeDel);
+    if (d) renderProjects(d);
+  });
+
+  const openBtn = document.createElement('button');
+  openBtn.className = 'proj-open';
+  openBtn.textContent = '›';
+  openBtn.title = 'Open project';
+  openBtn.addEventListener('click', e => { e.stopPropagation(); openPanel(del.id, proj.id); });
+
+  const xBtn = document.createElement('button');
+  xBtn.className = 'proj-x';
+  xBtn.textContent = '×';
+  xBtn.title = 'Remove';
+  xBtn.addEventListener('click', e => { e.stopPropagation(); removeProject(del.id, proj.id); });
+
+  row.appendChild(num);
+  row.appendChild(statusBtn);
+  row.appendChild(name);
+  row.appendChild(openBtn);
+  row.appendChild(xBtn);
+  row.addEventListener('click', e => {
+    if (e.target.closest('.proj-name-el') || e.target === xBtn || e.target === statusBtn || e.target === openBtn) return;
+    openPanel(del.id, proj.id);
+  });
+  return row;
+}
+
+function addProject() {
+  if (!activeDel) return;
+  const del = getDel(activeDel);
+  const newId = `${activeDel}-${Date.now()}`;
+  const proj = { id: newId, name: 'New project', desc: '', docs: [], status: 'active' };
+  del.projects.push(proj);
+  persist();
+  renderProjects(del);
+  setTimeout(() => {
+    const el = document.querySelector(`#pr-${newId} .proj-name-el`);
+    if (el) { el.focus(); document.execCommand('selectAll', false, null); }
+  }, 50);
+}
+
+function removeProject(delId, projId) {
+  const del = getDel(delId);
+  del.projects = del.projects.filter(p => p.id !== projId);
+  persist();
+  renderProjects(del);
+  if (activeProj === projId) closePanel();
+}
+
+// ═══════════════════════════════════════
+//  SLIDE PANEL
+// ═══════════════════════════════════════
+function openPanel(delId, projId) {
+  const del  = getDel(delId);
+  const proj = getProj(delId, projId);
+  if (!proj) return;
+  activeDel  = delId;
+  activeProj = projId;
+
+  document.getElementById('sp-del-tag').textContent = del.title.replace('\n', ' ');
+  document.getElementById('sp-title').textContent = proj.name;
+  document.getElementById('sp-desc').textContent  = proj.desc;
+  renderDocs(proj.docs);
+  document.getElementById('add-doc-form').classList.remove('on');
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('slide-panel').classList.add('on');
+}
+
+function closePanel() {
+  if (activeDel && activeProj) {
+    const proj = getProj(activeDel, activeProj);
+    if (proj) {
+      const t = document.getElementById('sp-title').textContent.trim();
+      const d = document.getElementById('sp-desc').textContent.trim();
+      if (t) proj.name = t;
+      proj.desc = d;
+      persist();
+      const del = getDel(activeDel);
+      if (del) {
+        renderProjects(del);
+        // Update sidebar active item stays
+      }
+    }
+  }
+  document.getElementById('overlay').classList.remove('on');
+  document.getElementById('slide-panel').classList.remove('on');
+  activeProj = null;
+}
+
+// ── DOCS ──
+function renderDocs(docs) {
+  const list = document.getElementById('doc-list');
+  list.innerHTML = '';
+  if (!docs || !docs.length) {
+    list.innerHTML = '<div class="doc-empty">No documents yet. Click "+ Add" to attach a link or file reference.</div>';
+    return;
+  }
+  docs.forEach((doc, i) => {
+    const item = document.createElement('div');
+    item.className = 'doc-item';
+    item.innerHTML = `
+      <div class="doc-ico">📄</div>
+      <div style="flex:1;min-width:0;">
+        <div class="doc-nm">${esc(doc.name)}</div>
+        ${doc.url ? `<div class="doc-url-text">${esc(doc.url)}</div>` : ''}
+      </div>
+      ${doc.url ? `<a class="doc-open" href="${esc(doc.url)}" target="_blank" rel="noopener">Open ↗</a>` : ''}
+      <button class="doc-rm" onclick="removeDoc(${i})">×</button>
+    `;
+    list.appendChild(item);
+  });
+}
+function toggleAddDoc() {
+  const f = document.getElementById('add-doc-form');
+  f.classList.toggle('on');
+  if (f.classList.contains('on')) {
+    document.getElementById('doc-name-in').value = '';
+    document.getElementById('doc-url-in').value  = '';
+    document.getElementById('doc-name-in').focus();
+  }
+}
+function saveDoc() {
+  const name = document.getElementById('doc-name-in').value.trim();
+  if (!name) { document.getElementById('doc-name-in').focus(); return; }
+  const url = document.getElementById('doc-url-in').value.trim();
+  const proj = getProj(activeDel, activeProj);
+  if (!proj) return;
+  proj.docs = proj.docs || [];
+  proj.docs.push({ name, url });
+  persist();
+  renderDocs(proj.docs);
+  toggleAddDoc();
+}
+function removeDoc(idx) {
+  const proj = getProj(activeDel, activeProj);
+  if (!proj) return;
+  proj.docs.splice(idx, 1);
+  persist();
+  renderDocs(proj.docs);
+}
+
+// ── UTIL ──
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+// ═══════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════
+buildSidebar();
+// Auto-open first item
+selectDel(state[0].id);
+
+// Hide topbar when embedded inside an iframe
+if (window.self !== window.top) {
+  document.body.classList.add('in-iframe');
+}
+</script>
+</body>
+</html>
